@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<link rel="icon" type="image/png" href="../../src/i/favicon.png">
+	<link rel="stylesheet" href="../../css/libs/amazeui.css">
+	<link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+	<div class="am-header-left am-header-nav">
+		<a href="javascript:history.back();" class="">
+			<span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+			<span class="am-header-nav-title">会员卡详情</span>
+		</a>
+	</div>
+	<h1 class="am-header-title">
+	Sumarc-Mobile
+</h1>
+</header>
+<div id="card-dl" class="am-container">
+	<div class="card-id">
+		<img class="img-card" src="../../img/vip_md.jpg">
+		<span class="card-number">会员卡号：<span id="card-number"></span></span>
+	</div>
+	<div class="card-dl-item">
+		<ul class="am-list">
+			<li><a href="javascript:void(0);"><span class="item-hd"><i class="am-icon-store"></i>使用店铺地址</span></a></li>
+			<li><a href="javascript:void(0);"><span>珠海市香洲区前山路78号 世邦国际装饰广场</span></a></li>
+			<li><a href="javascript:void(0);"><span>珠海市香洲区前山路78号 世邦国际装饰广场</span></a></li>
+		</ul>
+	</div>
+	<div class="card-dl-item">
+		<ul class="am-list">
+			<li><a href="javascript:void(0);"><span class="item-hd"><i class="am-icon-file-text-o am-icon-sm"></i>会员卡使用说明</span></a></li>
+			<li><a href="javascript:void(0);"><span>会员卡获得条件</span></a></li>
+			<li><a href="javascript:void(0);"><span>世邦会员准数特权</span></a></li>
+		</ul>
+		<ul class="am-list state">
+			<li>1、请在结账前出示此卡</li>
+			<li>2、此卡可享受会员优惠待遇</li>
+			<li>3、此卡不得购买产品，不得与其他优惠同事使用</li>
+			<li>4、此卡一经售出，既不兑现。如有遗失，请及时挂失</li>
+			<li>5、本店保留此卡法律范围内的最终解释权</li>
+		</ul>
+	</div>
+</div>
+<script src="../../api_desertion/config.js"></script>
+<script src="../../api_desertion/common.js"></script>
+<script src="../../src/js/zepto.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script>
+	$(function() {
+		var key = getcookie('key');
+		if (key == '') {
+			var urlarray = geturlstring();
+			if (urlarray['key']) {
+				key = urlarray['key'];
+			} else {
+				location.href = 'login.html';
+			}
+		}
+
+		function card() {
+			$.ajax({
+				type: 'post',
+				url: ApiUrl + "/index.php?act=member_index&op=member_auth",
+				data: {key: key},
+				dataType: "json",
+				success: function (result) {
+					var vipN = result.datas.vipcard_num;
+					$('#card-number').append(vipN)
+				}
+			});
+		}
+		card()
+	})
+</script>
+</body>
+</html>

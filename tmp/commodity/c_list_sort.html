@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <!--<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">-->
+  <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <!--<link rel="stylesheet" href="../../utils/tabulous/tabulous.css"/>-->
+</head>
+<body>
+<div id="wrapper">
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1" title="">Tab 1</a></li>
+      <li><a href="#tabs-2" title="">Tab 2</a></li>
+      <li><a href="#tabs-3" title="">Tab 3</a></li>
+    </ul>
+    <div id="tabs_container">
+      <div id="tabs-1">
+        <div class="c-product-list">
+          <div id="wss">
+            <div class="pull-action loading" id="pull-down">
+            <span class="am-icon-arrow-down pull-label" id="pull-down-label"> 下拉刷新</span>
+              <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul id="events-list" class="am-list">
+              <li class="am-list-item-desced">
+                <div class="am-list-item-text">
+                  正在加载内容...
+                </div>
+              </li>
+            </ul>
+            <div class="pull-action" id="pull-up">
+            <span class="am-icon-arrow-down pull-label" id="pull-up-label"> 上拉加载更多</span>
+              <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tabs-2">
+        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor.</p>
+
+      </div>
+
+      <div id="tabs-3">
+        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem.</p><p> Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales.</p>
+      </div>
+
+    </div><!--End tabs container-->
+  </div><!--End tabs-->
+</div>
+
+<script src="../../js/services/globalService.js"></script>
+<script src="../../js/libs/jquery.min.js"></script>
+<!--<script src="../../utils/tabulous/tabulous.min.js"></script>-->
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="listTemplate" type="text/x-handlebars-template">
+  <li>
+    <a href="c_details.html?goods_id=95" class="commodity-cont">
+      <img src="../../img/mobile-plice01.jpg" alt=""/>
+      <div class="commodity-des">
+        <p class="title">世邦家居手机专享</p>
+        <p class="price">￥<span>200000</span><span class="icon-active-sales"></span></p>
+        <p class="common">99%好评</p>
+        <p class="pay-num">9999付款</p>
+      </div>
+    </a>
+  </li>
+  <!--{{#each this}}-->
+  <!--<li class="am-list-item-desced" data-id="{{id}}">-->
+  <!--<a href="{{alt}}" class="am-list-item-hd" target="_blank">{{title}}</a>-->
+
+  <!--<div class="am-list-item-text">{{content}}</div>-->
+  <!--</li>-->
+  <!--{{/each}}-->
+</script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script>
+//  $(document).ready(function($){
+//
+//    $('#tabs').tabulous({
+//      effect: 'scale'
+//    });
+//
+//    (function($) {
+//      var EventsList = function(element, options) {
+//        var $main = $('#wss');
+//        var $list = $main.find('#events-list');
+//        var $pullDown = $main.find('#pull-down');
+//        var $pullDownLabel = $main.find('#pull-down-label');
+//        var $pullUp = $main.find('#pull-up');
+//        var topOffset = -$pullDown.outerHeight();
+//
+//        this.compiler = Handlebars.compile($('#listTemplate').html());
+//        this.prev = this.next = this.start = options.params.start;
+//        this.total = null;
+//
+//        this.getURL = function(params) {
+//          var queries = ['callback=?'];
+//          for (var key in  params) {
+//            if (key !== 'start') {
+//              queries.push(key + '=' + params[key]);
+//            }
+//          }
+//          queries.push('start=');
+//          return options.api + '?' + queries.join('&');
+//        };
+//
+//        this.renderList = function(start, type) {
+//          var _this = this;
+//          var $el = $pullDown;
+//
+//          if (type === 'load') {
+//            $el = $pullUp;
+//          }
+//
+//          $.getJSON(this.URL + start).then(function(data) {
+//            console.log(data);
+//            _this.total = data.total;
+//            var html = _this.compiler(data.events);
+//            if (type === 'refresh') {
+//              $list.children('li').first().before(html);
+//            } else if (type === 'load') {
+//              $list.append(html);
+//            } else {
+//              $list.html(html);
+//            }
+//
+//            // refresh iScroll
+//            setTimeout(function() {
+//              _this.iScroll.refresh();
+//            }, 100);
+//          }, function() {
+//            console.log('Error...')
+//          }).always(function() {
+//            _this.resetLoading($el);
+//            if (type !== 'load') {
+//              _this.iScroll.scrollTo(0, topOffset, 800, $.AMUI.iScroll.utils.circular);
+//            }
+//          });
+//        };
+//
+//        this.setLoading = function($el) {
+//          $el.addClass('loading');
+//        };
+//
+//        this.resetLoading = function($el) {
+//          $el.removeClass('loading');
+//        };
+//
+//        this.init = function() {
+//          var myScroll = this.iScroll = new $.AMUI.iScroll('#wss', {});
+//          // myScroll.scrollTo(0, topOffset);
+//          var _this = this;
+//          var pullFormTop = false;
+//          var pullStart;
+//
+//          this.URL = this.getURL(options.params);
+//          this.renderList(options.params.start);
+//
+//          myScroll.on('scrollStart', function() {
+//            if (this.y >= topOffset) {
+//              pullFormTop = true;
+//            }
+//
+//            pullStart = this.y;
+//            // console.log(this);
+//          });
+//
+//          myScroll.on('scrollEnd', function() {
+//            if (pullFormTop && this.directionY === -1) {
+//              _this.handlePullDown();
+//            }
+//            pullFormTop = false;
+//
+//            // pull up to load more
+//            if (pullStart === this.y && (this.directionY === 1)) {
+//              _this.handlePullUp();
+//            }
+//          });
+//        };
+//
+//        this.handlePullDown = function() {
+//          console.log('handle pull down');
+//          if (this.prev > 0) {
+//            this.setLoading($pullDown);
+//            this.prev -= options.params.count;
+//            this.renderList(this.prev, 'refresh');
+//          } else {
+//            console.log('别刷了，没有了');
+//          }
+//        };
+//
+//        this.handlePullUp = function() {
+//          console.log('handle pull up');
+//          if (this.next < this.total) {
+//            this.setLoading($pullUp);
+//            this.next += options.params.count;
+//            this.renderList(this.next, 'load');
+//          } else {
+//            console.log(this.next);
+//            // this.iScroll.scrollTo(0, topOffset);
+//          }
+//        }
+//      };
+//
+//      $(function() {
+//        var app = new EventsList(null, {
+//          api: 'https://api.douban.com/v2/event/list',
+//          params: {
+//            start: 100,
+//            type: 'music',
+//            count: 10,
+//            loc: 'beijing'
+//          }
+//        });
+//        app.init();
+//      });
+//
+//      document.addEventListener('touchmove', function(e) {
+//        e.preventDefault();
+//      }, false);
+//
+//    })(window.jQuery);
+//
+//  })
+</script>
+<script src="../../js/control/mercListController.js"></script>
+</body>
+</html>

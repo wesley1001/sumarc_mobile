@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="../../src/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+
+  <style>
+    .notify-set {background-color: #ffffff;}
+  </style>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">接收设置</h1>
+</header>
+<div>
+  <form action="">
+    <fieldset>
+      <div class="list-block">
+        <ul class="notify-set">
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >订单交易通知</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >付款成功提示：</div>
+                <div class="item-input">
+                  <label class=""><input name="ms_payment" type="checkbox" value=""></label>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >商品出库提示：</div>
+                <div class="item-input">
+                  <label class=""><input name="ms_shipment" type="checkbox" value=""></label>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="list-block">
+        <ul class="notify-set">
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >售后服务消息</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >退换货消息：</div>
+                <div class="item-input">
+                  <label class=""><input name="ms_returns" type="checkbox" value=""></label>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >到货通知消息：</div>
+                <div class="item-input">
+                  <label class=""><input name="ms_arrival" type="checkbox" value="" ></label>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >商品咨询消息：</div>
+                <div class="item-input">
+                  <label class=""><input name="ms_consult" type="checkbox" value=""></label>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label" >到货通知消息：</div>
+                <div class="item-input">
+                  <label class=""><input name="ms_reply" type="checkbox" value=""></label>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script>
+  /** @namespace result.datas.setting */
+  /** @namespace data.consult_mall_reply */
+  /** @namespace data.consult_goods_reply */
+  /** @namespace data.refund_return_notice */
+  /** @namespace data.order_deliver_success */
+  /** @namespace data.order_payment_success */
+  /** @namespace data.arrival_notice */
+
+//  datas: Object
+//  setting: Object
+//  arrival_notice: 1
+//  consult_goods_reply: 1
+//  consult_mall_reply: 1
+//  order_deliver_success: 1
+//  order_payment_success: 1
+//  refund_return_notice: 1
+
+  $(function () {
+
+    var key = getKey('key');
+    ms_receive();
+
+    function ms_receive() {
+      $.ajax({
+        type: 'POST',
+        url: ApiUrl + '/index.php?act=member_message&op=setting',
+        data: {key: key},
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+          var sett = data.datas.setting;
+
+          switch (sett.order_payment_success){
+            case '1':return  $('input[name="ms_payment"]').attr('checked');break;
+          }
+
+          switch (sett.consult_mall_reply){
+            case '1':return  $('input[name="ms_shipment"]').attr('checked');break;
+          }
+
+          switch (sett.refund_return_notice){
+            case '1':return  $('input[name="ms_returns"]').attr('checked');break;
+          }
+
+          switch (sett.arrival_notice){
+            case '1':return  $('input[name="ms_arrival"]').attr('checked');break;
+          }
+
+          switch (sett.consult_goods_reply){
+            case '1':return  $('input[name="ms_consult"]').attr('checked');break;
+          }
+
+          switch (sett.order_deliver_success){
+            case '1':return  $('input[name="ms_reply"]').attr('checked');break;
+          }
+
+//          if (data.length == ''){
+//            $('[type="checkbox"]').iCheck('check')
+//            }
+//          else{
+//            if(data.order_payment_success > 0){
+//              $('#ms-payment').iCheck('check')
+//            }
+//            if (data.order_deliver_success > 0){
+//            $('#ms-shipment').iCheck('check')
+//            }
+//            if (data.refund_return_notice > 0){
+//              $('#ms-returns').iCheck('check')
+//            }
+//            if (data.arrival_notice > 0){
+//              $('#ms-arrival').iCheck('check')
+//            }
+//            if (data.consult_goods_reply > 0){
+//              $('#ms-consulting').iCheck('check')
+//            }
+//            if (data.consult_mall_reply > 0){
+//              $('#ms-reply').iCheck('check')
+//            }
+//          }
+        }
+      })
+    }
+
+
+    function update_setting(code, val) {
+      $.ajax({
+        type: 'post',
+        url: ApiUrl + "/index.php?act=member_message&op=setting_update",
+        data: {key: key, mmt_code: code, is_receive: val},
+        dataType: "json",
+        success: function (result) {
+          console.log(result);
+        }
+      })
+    }
+
+    $('#ms-payment').on('ifChecked', function () {
+      update_setting('order_payment_success', 1);
+    });
+    $('#ms-payment').on('ifUnchecked', function () {
+      update_setting('order_payment_success', 0);
+    });
+
+    $('#ms-shipment').on('ifChecked', function () {
+      update_setting('order_deliver_success', 1);
+    });
+    $('#ms-shipment').on('ifUnchecked', function () {
+      update_setting('order_deliver_success', 0);
+    });
+
+    $('#ms-returns').on('ifChecked', function () {
+      update_setting('refund_return_notice', 1);
+    });
+    $('#ms-returns').on('ifUnchecked', function () {
+      update_setting('refund_return_notice', 0);
+    });
+
+    $('#ms-arrival').on('ifChecked', function () {
+      update_setting('arrival_notice', 1);
+    });
+    $('#ms-arrival').on('ifUnchecked', function () {
+      update_setting('arrival_notice', 0);
+    });
+
+    $('#ms-consulting').on('ifChecked', function () {
+      update_setting('consult_goods_reply', 1);
+    });
+    $('#ms-consulting').on('ifUnchecked', function () {
+      update_setting('consult_goods_reply', 0);
+    });
+
+    $('#ms-reply').on('ifChecked', function () {
+      update_setting('consult_mall_reply', 1);
+    });
+    $('#ms-reply').on('ifUnchecked', function () {
+      update_setting('consult_mall_reply', 0);
+    });
+
+  });
+</script>
+</body>
+</html>

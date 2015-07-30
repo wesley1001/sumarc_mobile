@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sumarc-Mobile</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+      <span class="am-header-nav-title">消息详细</span>
+    </a>
+  </div>
+  <h1 class="am-header-title">Sumarc-Mobile</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="../personal/notify_set.html" class="">
+      <i class="am-header-icon am-icon-cog"></i>
+    </a>
+  </div>
+</header>
+<div class="am-container">
+  <!--<div class="am-panel am-panel-default">-->
+  <!--<div class="am-panel-bd refund-hd">-->
+  <!--<div class="refund-hd-cont">-->
+  <!--<dl class="refund-hd-title">-->
+  <!--<dt>-->
+  <!--<i class="am-icon-file-text-o"></i><span></span>-->
+  <!--</dt>-->
+  <!--<dd>-->
+  <!--<span class="refund-price"></span>-->
+  <!--<span><i class="am-icon-cny"></i></span>-->
+  <!--</dd>-->
+  <!--</dl>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <div id="noti-user-detail"></div>
+</div>
+
+<script src="../../api_desertion/config.js"></script>
+<script src="../../api_desertion/common.js"></script>
+<script src="../../src/js/zepto.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="noti-detail" type="text/x-handlebars-template">
+  {{#noti_content}}
+  <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+    <!--列表标题-->
+    <div class="am-list-news-hd am-cf">
+      <!--带更多链接-->
+      <span class="c-org">
+        <a href="#">
+          <i class="am-icon-envelope am-fl"></i>
+          {{user-name}}
+        </a>
+      </span>
+    </div>
+    <div class="am-list-news-bd">
+      <ul class="am-list">
+        <li class="am-g am-list-item-desced">
+          <a href="{{message-desc}}" class="am-list-item-hd">{{message-title}}</a>
+          <div class="am-list-item-text">{{message-cont}}</div>
+        </li>
+        <li class="am-g am-list-item-annotation">
+          <span class="am-fl">最后更新的时间：<em>{{update-time}}</em></span>
+          <!--<a href="{{message-desc}}" class="am-btn am-btn-orange am-fr">查看详情</a>-->
+        </li>
+      </ul>
+    </div>
+  </div>
+  {{/noti_content}}
+</script>
+<script>
+  $(function() {
+    var key = getcookie('key');
+    if (key == '') {
+      var urlarray = geturlstring();
+      if (urlarray['key']) {
+        key = urlarray['key'];
+      } else {
+        location.href = 'login.html';
+      }
+    }
+    /** @namespace v.message_update_time */
+    /** @namespace result.datas.msg_list */
+    /** @namespace v.from_member_name */
+    /** @namespace v.message_title */
+    /** @namespace v.message_body */
+
+    function initPageNoti_detail() {
+      var message_id = GetQueryString("message_id");
+      $.ajax({
+        type: 'post',
+        url: ApiUrl + "/index.php?act=member_message&op=showmsgbatch&drop_type=msg_system",
+        data: {key: key, message_id: message_id},
+        dataType: "json",
+        success: function (result) {
+          var m = result.datas.msg_list;
+          var message_detail_u = m.map(function (v) {
+//            return {
+//              'user-name': v.from_member_name,
+//              'message-title': v.message_title,
+//              'message-cont': v.message_body,
+//              'update-time': (new Date(+v.message_update_time * 1000)).toLocaleDateString().split('/').join('-')
+//            };
+          });
+
+          var noti_user = {noti_content: message_detail_u};
+          var template = Handlebars.compile($('#noti_detail').html());
+          $('#noti-user-detail').html(template(noti_user));
+        }
+      });
+    }
+    initPageNoti_detail()
+  });
+</script>
+</body>
+</html>

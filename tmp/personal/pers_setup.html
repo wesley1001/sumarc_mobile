@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--Tile icon for Win8 (144x144 + tile color)-->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+</head>
+
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">设置</h1>
+</header>
+<div class="my-setup">
+  <ul class="am-list">
+    <li><a href="pers_info.html"><i class="am-icon-angle-right am-fr"></i>个人信息</a></li>
+    <li><a href="../address_control/ads_select.html"><i class="am-icon-angle-right am-fr"></i>地址管理</a></li>
+    <li><a href="pers_notify.html"><i class="am-icon-angle-right am-fr"></i>我的消息</a></li>
+    <li><a href="pers_point.html"><i class="am-icon-angle-right am-fr"></i>我的积分</a></li>
+  </ul>
+  <div class="exit am-hide">
+    <button onclick="logout()" class="am-btn am-btn-DarkOrange am-btn-block">退出当前登录账号</button>
+  </div>
+  <div class="am-modal am-modal-confirm" tabindex="-1" id="logout_confirm">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd">Hello Sumarc</div>
+      <div class="am-modal-bd">
+        你确定要退出登录吗？
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="../../src/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="../../src/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="../../src/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+</head>
+
+<body class="c-categroy">
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">商品分类</h1>
+</header>
+<div id="c_tabs"></div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="categroyTemplate" type="text/x-handlebars-template">
+  <div class="am-tabs" id="categroy_tabs">
+    <ul id="side_nav" class="am-tabs-nav am-nav">
+      {{#c_name}}
+      <li><a href="#">{{item}}</a></li>
+      {{/c_name}}
+    </ul>
+    <div class="am-tabs-bd">
+      {{#c_url}}
+      <div class="am-tab-panel c-grid">
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">客厅</p>
+            <img src="../../img/classify_img/living_room.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">餐厅</p>
+            <img src="../../img/classify_img/dining_room.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">卧室</p>
+            <img src="../../img/classify_img/bedroom.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">书房</p>
+            <img src="../../img/classify_img/schoolroom.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">儿童房</p>
+            <img src="../../img/classify_img/children's_bedroom.png"/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">户外家具</p>
+            <img src="../../img/classify_img/outdoors.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">办公家具</p>
+            <img src="../../img/classify_img/office_furniture.png" alt=""/>
+          </a>
+        </div>
+      </div>
+      {{/c_url}}
+      {{#c_url}}
+      <div class="am-tab-panel c-grid">
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">瓷砖地板</p>
+            <img src="../../img/classify_img/floor.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">厨房</p>
+            <img src="../../img/classify_img/cookhouse.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">卫浴用品</p>
+            <img src="../../img/classify_img/bathroom.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">墙纸涂料</p>
+            <img src="../../img/classify_img/wallpaper.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">门窗楼梯</p>
+            <img src="../../img/classify_img/door_window.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">窗帘灯饰</p>
+            <img src="../../img/classify_img/curtain.png" alt=""/>
+          </a>
+        </div>
+      </div>
+      {{/c_url}}
+      {{#c_url}}
+      <div class="am-tab-panel c-grid">
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">家用电器</p>
+            <img src="../../img/classify_img/appliance.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">家居饰品</p>
+            <img src="../../img/classify_img/accessories.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">床上用品</p>
+            <img src="../../img/classify_img/bedclothes.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">家居用品</p>
+            <img src="../../img/classify_img/commodity.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">厨房餐饮</p>
+            <img src="../../img/classify_img/kitchenware.png" alt=""/>
+          </a>
+        </div>
+        <div class="c-item">
+          <a href="{{item}}">
+            <p class="classify-subtitle">布艺织品</p>
+            <img src="../../img/classify_img/fabrics.png" alt=""/>
+          </a>
+        </div>
+      </div>
+      {{/c_url}}
+    </div>
+  </div>
+</script>
+
+<script src="../../js/control/mercGridController.js"></script>
+</body>
+</html>

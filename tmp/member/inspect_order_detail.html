@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验房订单查看</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css_desertion/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css_desertion/member.css">
+    <style type="text/css">
+#inspect-order-detail .order-ltlt{
+    background-color: #ECF5FF;
+    color: #000;
+}
+#inspect-order-detail .order-pdinfor{
+    margin-left: 0;
+    background-color: #FCFCFC;
+    padding: 5px 0;
+    line-height: 30px;
+}
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+
+    <!--验房订单-->
+    <div class="order-list-wp" id="inspect-order-detail">
+        <script type="text/html" id="inspect-order-detail-tmpl">
+        <div class="order-list">
+                <ul>
+                    <li class="gray-order-skin ">
+                            <div class="order-ltlt">
+                                <p>
+                                    订单编号：<%=inspect_order_info.order_no%>
+                                </p>
+                            </div>
+                            
+                                <div class="order-lcnt">
+                                    <div class="order-lcnt-shop">
+                                        <p>店铺名称：<%=inspect_order_info.store_name%></p>
+                                        <p>处理时间：<%=inspect_order_info.deal_time_str%></p>
+                                        <p>处理备注：<%=inspect_order_info.deal_remark%></p>
+                                    </div>
+                                    <div class="order-shop-pd">
+                                        
+                                        <a class="order-ldetail clearfix ">
+                                            <div class="order-pdinfor">
+                                                <p>联系姓名：<%=inspect_order_info.owner%></p>
+                                                <p>联系电话：<%=inspect_order_info.contact%></p>
+                                                <p>验房地址：<%=inspect_order_info.address%><%=inspect_order_info.door_num%></p>
+                                                <p>房屋面积：<%=inspect_order_info.areas%>㎡</p>
+                                                <p>房屋类型：<%=inspect_order_info.door_type_str%></p>
+                                                <p>期望日期：<%=inspect_order_info.want_date_str%></p>
+                                                <p>实际日期：<%=inspect_order_info.true_date_str%></p>
+                                                <p>备注信息：<%=inspect_order_info.remark%></p>
+                                                <p>下单时间：<%=inspect_order_info.input_time_str%></p>
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="order-shop-total">
+                                        <p class="clr-c07">验房费用：￥<%=inspect_order_info.price%> </p>
+                                        <p class="mt5">
+                                            <span class="ot-cancel"><%=inspect_order_info.order_status_str%></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                        </li>
+                </ul>
+        </div>
+        </script>
+    </div>
+    <div id="footer"></div>
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../api_desertion/template.js"></script>
+    <script type="text/javascript" src="../../api_desertion/config.js"></script>
+    <script type="text/javascript" src="../../api_desertion/common.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/inspect_order_detail.js"></script>
+</body>
+</html>

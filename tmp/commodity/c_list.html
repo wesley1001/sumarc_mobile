@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="../../src/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <style>
+    html,
+    body,
+    .page {
+      height: 100%;
+      }
+
+    #wrapper {
+      position: absolute;
+      top: 70px;
+      bottom: 0;
+      overflow: hidden;
+      margin: 0;
+      width: 100%;
+      padding: 0;
+      background-color: #f8f8f8;
+      }
+
+    .am-list {
+      margin: 0;
+      }
+
+    .am-list > li {
+      background: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+    .am-list > li:first-child {
+      border-top: 0;
+      }
+
+    .am-list > li > a {
+      padding: 0;
+      }
+
+    #commo_list .am-list > li {
+      padding: 4px;
+      }
+
+    .pull-action {
+      text-align: center;
+      height: 45px;
+      line-height: 45px;
+      color: #999;
+      }
+
+    .pull-action .am-icon-spin {
+      display: none;
+      }
+
+    .pull-action.loading .am-icon-spin {
+      display: block;
+      }
+
+    .pull-action.loading .pull-label {
+      display: none;
+      }
+
+    .winnow-tab {
+      top: 38;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 0;
+      height: 32px;
+      line-height: 32px;
+      z-index: 1010;
+      position: fixed;
+      margin-top: -1px;
+      background: #ffffff;
+      border-top: 1px solid rgba(185, 185, 185, 0.8);
+      border-bottom: 1px solid #c4c4c4;
+      }
+
+    .winnow-tab li {
+      float: left;
+      width: 25%;
+      margin-top: -1px;
+      text-align: center;
+      font-size: 1.2rem;
+      position: relative;
+      list-style: none;
+      border-right: 1px solid #d1d1d1;
+      }
+
+    .winnow-tab a {
+      padding: 4px 8px;
+      }
+  </style>
+</head>
+<body>
+<div class="page" id="commo_list">
+  <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+    <div class="am-header-left am-header-nav">
+      <a href="javascript:history.back();">
+        <span class="am-header-icon am-icon-angle-left"></span>
+      </a>
+    </div>
+    <h1 class="am-header-title">商品列表</h1>
+  </header>
+  <nav class="winnow-tab">
+    <li><a href="javascript:void(0);" class="news">新品</a></li>
+    <li><a href="javascript:void(0);" class="price">价格</a></li>
+    <li><a href="javascript:void(0);" class="sales-volume">销量</a></li>
+    <li><a href="javascript:void(0);" class="popularity">人气</a></li>
+  </nav>
+  <div id="wrapper" data-am-widget="list_news" class="am-list-news am-list-news-default">
+    <div class="am-list-news-bd">
+      <div class="pull-action loading" id="pull-down">
+        <span class="am-icon-arrow-down pull-label" id="pull-down-label"> 下拉刷新</span>
+        <span class="am-icon-spinner am-icon-spin"></span>
+      </div>
+      <ul class="am-list" id="events_list">
+        <li class="am-list-item-desced">
+          <div class="am-list-item-text">
+            正在加载内容...
+          </div>
+        </li>
+      </ul>
+      <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label"
+              id="pull-up-label"> 上拉加载更多</span>
+        <span class="am-icon-spinner am-icon-spin"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../../js/services/globalService.js"></script>
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+  {{#each this}}
+  <li>
+    <a href="c_details.html?goods_id={{ goods_id }}" class="commodity-cont">
+      <div class="commo-img">
+        <img src="{{ goods_image_url }}" alt=""/>
+      </div>
+      <div class="commodity-des">
+        <p class="title">{{ goods_name }}</p>
+
+        <p class="price">￥<span>{{ goods_price }}</span>
+          {{#if xianshi_flag}}
+          <span class="icon-active-sales"></span>
+          {{/if}}
+        </p>
+
+        <p class="common">99%好评</p>
+
+        <p class="pay-num">9999付款</p>
+      </div>
+    </a>
+  </li>
+  {{/each}}
+</script>
+<script src="../../js/control/mercListController.js"></script>
+</body>
+</html>

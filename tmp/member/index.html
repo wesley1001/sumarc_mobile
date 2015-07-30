@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sumarc-Mobile</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+  <link rel="stylesheet" href="../../css/index.css"/>
+
+</head>
+<body>
+<div class="am-container">
+  <div class="am-slider am-slider-a2">
+    <ul id="banner-cur" class="am-slides">
+    </ul>
+  </div>
+  <div class="am-g">
+    <div class="col-sm-12 news-title">
+      <span class="am-fl">
+        <img src="../../img/icon_img/mall_home_ico_news.png" alt=""/>
+      </span>
+      <h3>APP圣诞节特惠抢先购</h3>
+    </div>
+  </div>
+  <div id="site-view" class="am-g app-button">
+  </div>
+  <div class="news-title">
+    <h3>掌上世邦</h3>
+  </div>
+  <div id="activity" class="am-g promotions">
+  </div>
+  <div class="am-g c-furniture">
+    <div class="col-sm-12 news-title">
+      <h3 id="home-title" class="am-fl"></h3>
+      <a id="home-url" href="" class="am-fr">更多</a>
+    </div>
+    <div id="fur"></div>
+  </div>
+  <div id="furFooter" class="am-g"></div>
+  <div class="am-g c-materials first">
+    <div class="col-sm-12 news-title">
+      <h3 id="build-title" class="am-fl"></h3>
+      <a id="build-url" href="" class="am-fr" alt="">更多</a>
+    </div>
+    <div id="build1"></div>
+  </div>
+  <div class="am-g c-materials">
+    <div id="build2"></div>
+  </div>
+  <div class="am-g c-accessories first">
+    <div class="col-sm-12 news-title">
+      <h3 id="fur-title" class="am-fl"></h3>
+      <a id="fur-url" href="" class="am-fr">更多</a>
+    </div>
+    <div id="acces"></div>
+  </div>
+  <div id="acces-f" class="am-g">
+  </div>
+</div>
+<script src="../../api_desertion/config.js"></script>
+<script src="../../api_desertion/common.js"></script>
+<script src="../../src/js/zepto.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="main-template" type="text/x-handlebars-template">
+  {{#each banner}}
+  <li>
+    <img src="{{banner-img}}">
+  </li>
+  {{/each}}
+  {{#each siteView}}
+  <div class="col-sm-3">
+    <a href="{{site-url}}" class="furniture">
+      <img src="{{site-img}}" alt=""/>
+      <h3>{{site-title}}</h3>
+    </a>
+  </div>
+  {{/each}}
+  {{#ac_cont}}
+  <a href="{{floor-url}}" class="col-sm-4">
+    <h3>{{floor-title}}</h3>
+    <p>手机购买优惠更多</p>
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/ac_cont}}
+  {{#cb_furniture}}
+  {{#first}}
+  <div class="col-sm-4 living-room">
+    <a href="{{floor-url}}">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">沙发|茶几|电视柜|鞋柜|客厅餐桌</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+  </div>
+  {{/first}}
+  <div class="col-sm-8 line-bottom">
+    {{#second}}
+    <a href="{{floor-url}}" class="col-sm-6 school-room">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">书桌|书柜|办公椅|保险柜</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/second}}
+    {{#thirdly}}
+    <a href="{{floor-url}}" class="col-sm-6 dining-room">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">餐桌|餐椅|餐车|餐边柜</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/thirdly}}
+    {{#fourthly}}
+    <a href="{{floor-url}}" class="col-sm-6 children-room">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">儿童衣柜|书柜|儿童床</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/fourthly}}
+    {{#fifth}}
+    <a href="{{floor-url}}" class="col-sm-6 bedroom">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">儿童衣柜|书柜|儿童床</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/fifth}}
+  </div>
+  {{/cb_furniture}}
+  {{#fur_footer}}
+  {{#sixth}}
+  <div class="col-sm-6 office">
+    <a href="{{floor-url}}">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">电脑桌|文件柜|办公椅|保险柜|文件柜</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+  </div>
+  {{/sixth}}
+  {{#seventh}}
+  <div class="col-sm-6 outdoors">
+    <a href="{{floor-url}}">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">吊篮|晾衣架|吊椅|鞋柜</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+  </div>
+  {{/seventh}}
+  {{/fur_footer}}
+  {{#buildOne}}
+  {{#first}}
+  <a href="{{floor-url}}" class="col-sm-4">
+    <h3>{{floor-title}}</h3>
+    <!--<p class="description">瓷砖|地板|马赛克|文化石</p>-->
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/first}}
+  {{#second}}
+  <a href="{{floor-url}}" class="col-sm-4 bg-gray">
+    <h3>{{floor-title}}</h3>
+    <!--<p class="description">洗手盆|浴缸|龙头|浴室配件</p>-->
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/second}}
+  {{#thirdly}}
+  <a href="{{floor-url}}" class="col-sm-4">
+    <h3>{{floor-title}}</h3>
+    <!--<p class="description">防盗门|房门|楼梯</p>-->
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/thirdly}}
+  {{/buildOne}}
+  {{#buildTwo}}
+  {{#fourthly}}
+  <a href="{{floor-url}}" class="col-sm-4 bg-gray">
+    <h3>{{floor-title}}</h3>
+    <!--<p class="description">瓷砖|地板|马赛克|文化石</p>-->
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/fourthly}}
+  {{#fifth}}
+  <a href="{{floor-url}}" class="col-sm-4">
+    <h3>{{floor-title}}</h3>
+    <!--<p class="description">洗手盆|浴缸|龙头|浴室配件</p>-->
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/fifth}}
+  {{#sixth}}
+  <a href="{{floor-url}}" class="col-sm-4 bg-gray">
+    <h3>{{floor-title}}</h3>
+    <!--<p class="description">防盗门|房门|楼梯</p>-->
+    <img src="{{floor-img}}" alt=""/>
+  </a>
+  {{/sixth}}
+  {{/buildTwo}}
+  {{#accessories}}
+  <div class="col-sm-4 appliances">
+    {{#first}}
+    <a href="{{floor-url}}">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">大家电|生活电器|厨房电器</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/first}}
+  </div>
+  <div class="col-sm-8 line-bottom">
+    {{#second}}
+    <a href="{{floor-url}}" class="col-sm-12 bedclothes">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">床品|蚊帐|枕芯|凉席</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/second}}
+    {{#thirdly}}
+    <a href="{{floor-url}}" class="col-sm-6 decorations">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">花|画|水族|钟表|摆设</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/thirdly}}
+    {{#fourthly}}
+    <a href="{{floor-url}}" class="col-sm-6 fabrics">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">家纺|沙发套|桌布|布艺玩具</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/fourthly}}
+  </div>
+  {{/accessories}}
+  {{#accesFooter}}
+  <div class="col-sm-6 catering">
+    {{#fifth}}
+    <a href="{{floor-url}}">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">锅具|餐具|杯具|收纳箱|刀具</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/fifth}}
+  </div>
+  <div class="col-sm-6 commodity">
+    {{#sixth}}
+    <a href="{{floor-url}}">
+      <h3>{{floor-title}}</h3>
+      <!--<p class="description">收纳|洗漱用品|清洁用品|日用小件</p>-->
+      <img src="{{floor-img}}" alt=""/>
+    </a>
+    {{/sixth}}
+  </div>
+  <div class="col-sm-12">
+    <div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
+      <a href="#top" title="">
+        <img class="am-gotop-icon-custom" src="../../img/icon_img/top.png"/>
+      </a>
+    </div>
+  </div>
+  {{/accesFooter}}
+</script>
+<script src="../../js/control/homeController.js"></script>
+</body>
+</html>

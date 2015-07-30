@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Hello Sumarc</title>
+<link href="css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page_wrap">
+        <header class="search ov">
+            <div class="search-m ov">
+                <div class="search-group fleft"><span class="search-icon"><img src="images/search.png"></span><input type="text" value="搜索商品、店铺" id="search-input"/></div>
+				<div class="search-btn fright"><button value="搜索" id="search"><img src="images/search-btn.png"></button></div>
+            </div>
+        </header>
+        <!-- 头部结束-->
+        
+        <div id="scroller">
+            <div id="slider" class="swipe">
+                <div class="swipe-wrap" id="advimg">
+
+                </div>
+                <nav class="nav-pic">
+                    <ul id="position">
+                        <li class="on"></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /轮播结束-->
+        <div class="announ">
+            <ul>
+                <li><a href="#"><img src="images/Announ-icon.png">APP圣诞节特惠抢先购1</a></li>
+                <li><a href="#"><img src="images/Announ-icon.png">APP圣诞节特惠抢先购2</a></li>
+                <li><a href="#"><img src="images/Announ-icon.png">APP圣诞节特惠抢先购3</a></li>
+                <li><a href="#"><img src="images/Announ-icon.png">APP圣诞节特惠抢先购4</a></li>
+            </ul>
+        </div>
+        <!-- /公告结束-->
+        <div class="ads">
+            <a href="#"><img src="images/Announ-ads.jpg" /></a>
+        </div>
+        <!-- /广告--> 
+        <h3 class="title"><a href="#">今日特惠</a></h3>
+        <div id="scroller-goods">
+            <div id="slider-goods" class="swipe">
+                <div class="swipe-wrap" id="touchslider-box"> 
+                </div>
+            </div>
+            <nav class="nav-goods">
+                <ul id="position-goods">
+                    <li class="on"></li>
+                    <li class=""></li>
+                    <li class=""></li>
+                    <li class=""></li>
+                    <li class=""></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- /今日特惠结束-->
+        
+        <div class="goods-class">
+            <h3 class="title"><a href="#">商品分类</a></h3>
+            <div class="goods-class-m">
+                <ul class="goods-ul ov">
+                    <li class="cur"><a href="javascript:;">全部</a></li>
+                    <li><a href="javascript:;">家具</a></li>
+                    <li><a href="javascript:;">建材</a></li>
+                    <li><a href="javascript:;">家居家饰</a></li>
+                </ul>
+                <div class="goods-warp"> 
+                    <div class="goods-lazy-box on">
+                    	<div class="content">
+                            <div class="forum_list ov">
+                                <p class="update"><span>----</span>每日更新<span>----</span></p>
+                                <p class="goods-title">热门商品</p>
+                                <div class="outDiv" id="allpic">
+                                	
+                                </div>                               		  
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="goods-lazy-box">
+                        <div class="content">
+                            <div class="forum_list ov">
+                                <p class="update"><span>----</span>每日更新<span>----</span></p>
+                                <p class="goods-title">热门商品</p>
+                                <div class="outDiv" id="furniture">
+                                </div>
+                                	  
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="goods-lazy-box">
+                        <div class="content">
+                            <div class="forum_list ov">
+                                <p class="update"><span>----</span>每日更新<span>----</span></p>
+                                <p class="goods-title">热门商品</p>
+                                <div class="outDiv" id="building">
+                                </div>
+                                		  
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="goods-lazy-box">
+                        <div class="content">
+                            <div class="forum_list ov">
+                                <p class="update"><span>----</span>每日更新<span>----</span></p>
+                                <p class="goods-title">热门商品</p>
+                                <div class="outDiv" id="home">
+                                	
+                                </div>	  
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- /商品分类结束-->
+    </div>
+    
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/swipe.js"></script>
+<script type="text/javascript">
+    function txtScroll(){
+            $(".announ ul li").eq(0).fadeOut(function(){
+                $(this).clone().appendTo($(this).parent()).show('slow');
+                $(this).remove();
+            });
+            
+        }
+        setInterval('txtScroll()',3000);
+    /*公告结束*/ 
+    
+    $(function(){
+            $(".goods-class-m ul li").click(function(){
+
+                $(this).addClass("cur").siblings().removeClass("cur");
+                $(".goods-lazy-box").eq($(this).index()).fadeIn().addClass("on").siblings().fadeOut().removeClass("on");
+				
+            })
+
+            /*切换结束*/
+            
+            $(".search .search-group input").focus(function(){
+                if($(this).val()==this.defaultValue){
+                    $(this).val("");	
+                }	
+            }).blur(function(){
+                if($(this).val()==""){
+                    $(this).val(this.defaultValue);	
+                }	
+            });
+            $("#search").click(function(){
+                var seInput=$("#search-input").val();
+                
+            });
+            /*搜索*/
+            
+            $(window).scroll(function(){
+                var scollHeight=$("#scroller").height()+$(".announ").height()+$(".ads").height()+$(".title").height()+$("#scroller-goods").height();
+                console.log(scollHeight);
+                console.log($(document).scrollTop());
+                if($(document).scrollTop()>scollHeight){
+                    $(".goods-ul").addClass("fixed");
+                }else{
+                    $(".goods-ul").removeClass("fixed");
+                }
+            });
+            /*商品分类导航固定*/
+        });
+    
+</script>
+<script type="text/javascript" src="js/homeControllers.js"></script>
+</body>
+</html>

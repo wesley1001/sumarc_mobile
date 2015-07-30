@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <style>
+    html, body,
+    .commodity-page {
+      height: 100%;
+      }
+  </style>
+</head>
+
+<body>
+<div class="commodity-page">
+  <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+    <div class="am-header-left am-header-nav">
+      <a href="javascript:history.back();">
+        <i class="am-header-icon am-icon-angle-left"></i>
+      </a>
+    </div>
+    <h1 class="am-header-title">商品详情</h1>
+  </header>
+  <div id="wrapper" data-am-widget="list_news" class="am-list-news am-list-news-default">
+    <div class="am-list-news-bd">
+      <div class="pull-action loading" id="pull-down">
+        <span class="am-icon-arrow-down pull-label" id="pull-down-label"> 下拉刷新</span>
+        <span class="am-icon-spinner am-icon-spin"></span>
+      </div>
+      <div id="c_detail_cont" class="c-details"></div>
+      <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label" id="pull-up-label"> 上拉加载更多</span>
+        <span class="am-icon-spinner am-icon-spin"></span>
+      </div>
+    </div>
+    <div class="bottom-tool btn-popup">
+      <button onclick="addCart()" type="button" class="am-btn am-btn-orange am-radius">加入购物车</button>
+      <button onclick="buyNow()" type="button" class="am-btn am-btn-magenta am-radius">立即购买</button>
+    </div>
+  </div>
+  <div class="am-modal am-modal-confirm" id="myCart">
+    <div class="am-modal-dialog">
+      <div class="am-modal-bd">
+        已成功到添加购物车
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn" data-am-modal-cancel>再逛逛</span>
+        <span class="am-modal-btn" data-am-modal-confirm>去购物车</span>
+      </div>
+    </div>
+  </div>
+  <div class="am-modal-actions" id="addCart">
+    <div class="am-modal-actions-group">
+      <ul class="pddc-stock ppdc-white-wrap" style="margin: 0;">
+        <li class="pddc-stock-title">
+          <span class="key">库存：</span>
+          <span class="value"><span class="storage_num stock-num"></span>件</span>
+        </li>
+        <li class="bd-tdashed-dd">
+          <div class="value-no">
+            <span class="key-no">数量：</span>
+            <span class="cart-minus am-fl"><i class="am-icon-minus"></i></span>
+            <input type="text" class="cart-num am-fl" id="cartNum" value="1"/>
+            <span class="cart-add am-fl"><i class="am-icon-plus"></i></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="am-modal-actions-group btn-popup">
+      <button class="am-btn am-btn-magenta" data-am-modal-confirm>确定</button>
+    </div>
+  </div>
+  <div class="am-modal-actions" id="buyNow">
+    <div class="am-modal-actions-group">
+      <ul class="pddc-stock ppdc-white-wrap" style="margin: 0;">
+        <li class="pddc-stock-title">
+          <span class="key">库存：</span>
+          <span class="value"><span class="storage_num stock-num"></span>件</span>
+        </li>
+        <li class="bd-tdashed-dd">
+          <div class="value-no">
+            <span class="key-no">数量：</span>
+            <span class="buy-minus am-fl"><i class="am-icon-minus"></i></span>
+            <input type="text" class="buy-num am-fl" id="buyNum" value="1"/>
+            <span class="buy-add am-fl"><i class="am-icon-plus"></i></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="am-modal-actions-group btn-popup">
+      <button class="am-btn am-btn-magenta" data-am-modal-confirm>确定</button>
+    </div>
+  </div>
+  <div class="am-modal am-modal-alert" id="succeedCollect">
+    <div class="am-modal-dialog">
+      <div class="am-modal-bd">
+        您已成功添加到收藏夹!
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn">确定</span>
+      </div>
+    </div>
+  </div>
+  <div class="am-modal am-modal-alert" id="addCollect">
+    <div class="am-modal-dialog">
+      <div class="am-modal-bd">
+       成功添加到收藏夹!
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn">确定</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="detailTemplate" type="text/x-handlebars-template">
+  <!--<div class="am-alert am-alert-danger">-->
+    <!--<button type="button" class="am-close">&times;</button>-->
+    <!--<p>没什么可给你，但求凭这阙歌。谢谢你风雨里，都不退愿陪着我。</p>-->
+  <!--</div>-->
+  <div class="c-banner">
+    <div class="am-slider am-slider-default">
+      <ul class="am-slides">
+        {{#c_url_img}}
+        <li><img src="{{item}}" alt=""/></li>
+        {{/c_url_img}}
+      </ul>
+    </div>
+  </div>
+  {{#c_intro}}
+  <div class="c-intro">
+    <div class="product-intro">
+      <div class="product-name"><p>{{ c_name }}</p></div>
+      <div class="product-price">
+      <span class="current">
+        <label> 价格：</label>
+        <span>￥{{ c_price }}</span>
+      </span>
+        <span class="original">￥{{ c_price_market }}</span>
+      </div>
+      <div class="product-data">
+        <span class="sales">销量：<strong>{{ c_sale_num }}</strong></span>
+        <span class="inventory">库存: <strong>{{ c_storage }} {{ c_unit }}</strong></span>
+        <span class="address">{{ c_origin }}</span>
+      </div>
+    </div>
+    <div class="store-active">
+      <span class="pgt-title fleft">活动名称：暂无</span>
+      <i class="am-icon-chevron-circle-down am-fr"></i>
+    </div>
+    <div class="product-desc">
+      <a href="#" class="pddetail-go-title">
+        <span class="pgt-title fleft">图文详情</span>
+        <i class="am-icon-angle-right am-fr"></i>
+      </a>
+    </div>
+    <div class="store-desc">
+      <div class="store-intro">
+        <img src="../../img/product_img/user.png" alt=""/>
+        <span class="store-name">
+          <h3>世邦家居</h3>
+          <span>综合评分：<strong class="score">5.0</strong></span>
+        </span>
+      </div>
+      <div class="store-assessment">
+        <span class="assess-sub">
+              <span>描述相符</span>
+              <p class="score">4.5<i class="icon-up"></i></p>
+            </span>
+        <span class="assess-sub">
+              <span>服务态度</span>
+              <p class="score">4.5<i class="icon-up"></i></p>
+            </span>
+        <span class="assess-sub">
+              <span>发货速度</span>
+              <p class="score">4.5<i class="icon-up"></i></p>
+            </span>
+        <span class="assess-sub">
+              <span>产品质量</span>
+              <p class="score">4.5<i class="icon-down"></i></p>
+            </span>
+        <span class="assess-sub">
+              <span>包装完整</span>
+              <p class="score">4.5<i class="icon-up"></i></p>
+            </span>
+      </div>
+      <div class="btn-store">
+        <button onclick="addCollect()" type="button" class="am-btn am-btn-white am-radius"><i class="icon-liked"></i>收藏宝贝</button>
+        <button type="button" class="am-btn am-btn-white am-radius am-fr"><i class="icon-store"></i>进入店铺</button>
+      </div>
+    </div>
+    <div class="comment-panel">
+      <div class="product-comment">
+        <h3>产品评价</h3>
+        <div class="comment-list">
+          <div>
+            <span class="user-name">Mithenji</span>
+            <span class="date">2015-01-07</span>
+          </div>
+          <div>
+            <p>法式新古典欧洲进口红木家具 进口条纹面料手工雕花客厅沙发 组合套件</p>
+          </div>
+        </div>
+        <div class="comment-list">
+          <div>
+            <span class="user-name">Mithenji</span>
+            <span class="date">2015-01-07</span>
+          </div>
+          <div>
+            <p>法式新古典欧洲进口红木家具 进口条纹面料手工雕花客厅沙发 组合套件</p>
+          </div>
+        </div>
+      </div>
+      <div class="and-more"><a href="c_comment.html"><span>查看更多评论</span></a></div>
+    </div>
+    <div class="product-article">
+      <a href="#"><h3>图文详情</h3></a>
+      <ul id="events-list" class="am-list">
+        <li class="am-list-item-desced">
+          <div class="am-list-item-text">
+            正在加载内容...
+          </div>
+        </li>
+        <!--<li class="am-list-item-desced" data-id="aa">-->
+          <!--<div class="am-list-item-text">上拉加载更多~</div>-->
+        <!--</li>-->
+      </ul>
+  </div>
+  </div>
+  {{/c_intro}}
+</script>
+<script id="articleTemplate" type="text/x-handlebars-template">
+  {{#each this}}
+  <li class="am-list-item-desced" data-id="{{id}}">
+    <a href="{{alt}}" class="am-list-item-hd" target="_blank">{{title}}</a>
+   <div class="am-list-item-text">{{content}}</div>
+  </li>
+  {{/each}}
+</script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/control/mercDetailController.js"></script>
+<script src="../../js/views/c_detailsViews.js"></script>
+</body>
+</html>

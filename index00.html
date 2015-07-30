@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="icon" type="image/png" href="src/i/favicon.png">
+  <link rel="stylesheet" href="css/libs/amazeui.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/index.css"/>
+  <style>
+    .am-gotop-fixed {
+      opacity: 1;
+      }
+
+    .am-container {
+      padding: 0;
+      overflow: hidden;
+      }
+
+    .am-with-topbar-fixed-top {
+      padding-top: 42px;
+      }
+
+    .am-input-group-sm > .am-input-group-btn > .am-btn {
+      font-size: 1.4rem !important;
+      padding: 9px 14.000000000000002px !important;
+      }
+
+    .am-input-group-sm.home-page {
+      width: 88%;
+      float: left;
+      margin-left: 2px;
+      margin-bottom: 1px;
+      border-bottom: 1px solid #e1e1e1;
+      }
+
+    .am-input-group-sm > .am-form-field {
+      font-size: 1.6rem !important;
+      padding: 6px 14.000000000000002px !important;
+      }
+
+    .am-input-group-sm > .am-input-group-label {
+      font-size: 1.4rem !important;
+      padding: 0 2px !important;
+      }
+
+    .am-input-group-label {
+      border: none;
+      background-color: rgba(73, 65, 179, 0);
+      }
+  </style>
+</head>
+<body>
+<header class="am-topbar am-topbar-inverse am-topbar-fixed-top">
+  <div class="am-input-group am-input-group-sm home-page">
+    <span class="am-input-group-label"><i class="icon-search"></i></span>
+    <input type="text" class="am-form-field" placeholder="">
+  </div>
+  <div class="am-topbar-right">
+    <button class="am-btn am-btn-scanner am-topbar-btn am-btn-sm">&nbsp;</button>
+  </div>
+</header>
+<div class="am-container">
+  <div id="banner_cur" class="am-slider am-slider-a2"></div>
+  <div class="nav-title tt">
+    <i class="icon-news-lb"></i>
+
+    <h3>APP 5.1特惠抢先购！</h3>
+  </div>
+  <div id="site_view"></div>
+  <div class="nav-title"><h3 class="left">掌上世邦</h3></div>
+  <div id="activity_flow"></div>
+  <div class="nav-title white">
+    <h3 class="left">世邦家具</h3>
+
+    <h3 class="right"><a href="#">更多</a></h3>
+  </div>
+  <div id="furn_tmp" class="c-furniture"></div>
+  <div id="furFooter" class="both-grid"></div>
+  <div class="nav-title white">
+    <h3 class="left">世邦建材</h3>
+
+    <h3 class="right"><a href="#">更多</a></h3>
+  </div>
+  <div id="builds" class="c-materials nine-grid"></div>
+  <div class="nav-title white">
+    <h3 class="left">家居家饰</h3>
+
+    <h3 class="right"><a href="#">更多</a></h3>
+  </div>
+  <div id="access" class="access-grid"></div>
+  <div id="accessFooter" class="both-grid-last"></div>
+</div>
+<!--<script src="js/libs/require.js" data-main="js/app"></script>-->
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/handlebars.min.js"></script>
+<script id="carousel_tmp" type="text/x-handlebars-template">
+  <ul class="am-slides">
+    {{#each banner}}
+    <li>
+      <img class="am-img-responsive" src="{{banner-img}}">
+    </li>
+    {{/each}}
+  </ul>
+</script>
+<script id="webSite_tmp" type="text/x-handlebars-template">
+  <ul class="website-nav">
+    {{#each siteView}}
+    <li class="website-item">
+      <a href="{{site-url}}">
+        <img class="am-img-responsive" src="{{site-img}}" alt=""/>
+
+        <h3>{{site-title}}</h3>
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+</script>
+<script id="activity_tmp" type="text/x-handlebars-template">
+  <ul class="c-promotional">
+    {{#activity_flow}}
+    <li class="promo-item">
+      <a href="javascript:void (0)">
+        <h3>{{floor-title}}</h3>
+
+        <p>手机购买优惠更多</p>
+        <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+      </a>
+    </li>
+    {{/activity_flow}}
+  </ul>
+</script>
+<script id="furniture_tmp" type="text/x-handlebars-template">
+  {{#first}}
+  <div class="living-room">
+    <a href="javascript:void (0);">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">沙发|茶几|电视柜|鞋柜<br>客厅餐桌</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+  </div>
+  {{/first}}
+  <div class="tian-grid">
+    {{#second}}
+    <a href="javascript:void (0);" class="item-grid">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">书桌|书柜<br>办公椅<br>保险柜</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+    {{/second}}
+    {{#thirdly}}
+    <a href="javascript:void (0);" class="item-grid">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">餐桌|餐椅|餐车<br>餐边柜</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+    {{/thirdly}}
+    {{#fourthly}}
+    <a href="javascript:void (0);" class="item-grid">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">儿童衣柜|书柜<br>儿童床</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+    {{/fourthly}}
+    {{#fifth}}
+    <a href="javascript:void (0);" class="item-grid">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">儿童衣柜|书柜<br>儿童床</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+    {{/fifth}}
+  </div>
+</script>
+<script id="furFooter_tmp" type="text/x-handlebars-template">
+  {{#first}}
+    <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">电脑桌|文件柜|办公椅|保险柜|文件柜</p>
+        <img src="{{floor-img}}" alt=""/>
+      </a>
+    </span>
+  {{/first}}
+  {{#second}}
+    <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">吊篮|晾衣架|<br>吊椅|鞋柜</p>
+        <img src="{{floor-img}}" alt=""/>
+      </a>
+    </span>
+  {{/second}}
+</script>
+<script id="builds_tmp" type="text/x-handlebars-template">
+  {{#first}}
+  <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">瓷砖|地板|马赛克<br>文化石</p>
+        <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+      </a>
+  </span>
+  {{/first}}
+  {{#second}}
+  <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">洗手盆|浴缸|龙头<br>浴室配件</p>
+        <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+      </a>
+  </span>
+  {{/second}}
+  {{#thirdly}}
+  <span class="item-grid">
+     <a href="javascript:void (0);">
+       <h3>{{floor-title}}</h3>
+
+       <p class="description">防盗门|房门|楼梯</p>
+       <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+     </a>
+  </span>
+  {{/thirdly}}
+  {{#fourthly}}
+  <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">瓷砖|地板|马赛克<br>文化石</p>
+        <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+      </a>
+  </span>
+  {{/fourthly}}
+  {{#fifth}}
+  <span class="item-grid">
+    <a href="javascript:void (0);">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">洗手盆|浴缸|龙头<br>浴室配件</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+  </span>
+  {{/fifth}}
+  {{#sixth}}
+  <span class="item-grid">
+     <a href="javascript:void (0);">
+       <h3>{{floor-title}}</h3>
+
+       <p class="description">防盗门|房门|楼梯</p>
+       <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+     </a>
+  </span>
+  {{/sixth}}
+</script>
+<script id="access_tmp" type="text/x-handlebars-template">
+  <div class="appliances">
+    {{#first}}
+    <a href="javascript:void (0);">
+      <h3>{{floor-title}}</h3>
+
+      <p class="description">大家电|生活电器 <br>厨房电器</p>
+      <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+    </a>
+    {{/first}}
+  </div>
+  <div class="three-grid">
+    {{#second}}
+    <span class="item-grid">
+       <a href="javascript:void (0);">
+         <h3>{{floor-title}}</h3>
+
+         <p class="description">床品|蚊帐|<br>枕芯|凉席</p>
+         <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+       </a>
+    </span>
+    {{/second}}
+    {{#thirdly}}
+    <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">花|画|水族|<br>钟表|摆设</p>
+        <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+      </a>
+    </span>
+    {{/thirdly}}
+    {{#fourthly}}
+    <span class="item-grid">
+       <a href="javascript:void (0);">
+         <h3>{{floor-title}}</h3>
+
+         <p class="description">家纺|沙发套|<br>桌布|布艺玩具</p>
+         <img class="am-img-responsive" src="{{floor-img}}" alt=""/>
+       </a>
+    </span>
+    {{/fourthly}}
+  </div>
+</script>
+<script id="accessFooter_tmp" type="text/x-handlebars-template">
+  {{#fifth}}
+    <span class="item-grid">
+       <a href="javascript:void (0);">
+         <h3>{{floor-title}}</h3>
+
+         <p class="description">锅具|餐具|<br>杯具|收纳箱|<br>刀具</p>
+         <img src="{{floor-img}}" alt=""/>
+       </a>
+    </span>
+  {{/fifth}}
+  {{#sixth}}
+    <span class="item-grid">
+      <a href="javascript:void (0);">
+        <h3>{{floor-title}}</h3>
+
+        <p class="description">收纳|洗漱用品<br>清洁用品<br>日用小件</p>
+        <img src="{{floor-img}}" alt=""/>
+      </a>
+    </span>
+  {{/sixth}}
+  <div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
+    <a href="#top" title="">
+      <img class="am-gotop-icon-custom" src="img/icon_img/top.png"/>
+    </a>
+  </div>
+</script>
+<script src="js/libs/amazeui.min.js"></script>
+<script src="js/services/globalService.js"></script>
+<script src="js/control/homeController.js"></script>
+</body>
+</html>

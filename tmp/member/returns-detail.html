@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+      <span class="am-header-nav-title">退货</span>
+    </a>
+  </div>
+  <h1 class="am-header-title">
+    Sumarc-Mobile
+  </h1>
+</header>
+<div id="refund-detail" class="am-container">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-bd refund-hd">
+      <div class="refund-hd-cont">
+        <dl class="refund-hd-title">
+          <dt>
+            <i class="am-icon-file-text-o"></i><span>待审核</span>
+          </dt>
+          <dd>
+            <span class="refund-price">退款金额：</span>
+            <span id="refundPrice"><i class="am-icon-cny"></i></span>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div data-am-widget="list_news" class="am-list-news am-list-news-default process">
+    <div class="am-list-news-hd am-cf">
+      <a href="#">
+        <h2>退货详情</h2>
+      </a>
+    </div>
+    <div class="am-list-news-bd">
+      <ul class="am-list">
+        <li class="am-g am-list-item-dated">
+          <a id="applyTime" href="javascript:void(0);" class="am-list-item-hd"><i class="am-icon-hand-o-right"></i>
+            买家申请退货</a>
+        </li>
+        <li class="am-g am-list-item-dated">
+          <a id="disposeTime" href="javascript:void(0);" class="am-list-item-hd"><i class="am-icon-hand-o-right"></i>
+            商家处理退货申请</a>
+        </li>
+        <li class="am-g am-list-item-dated">
+          <a id="finishTime" href="javascript:void(0);" class="am-list-item-hd"><i class="am-icon-hand-o-right"></i>
+            平台审核，退货完成</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="content-detail" data-am-widget="list_news" class="am-list-news am-list-news-default">
+  </div>
+</div>
+<script src="../../api_desertion/config.js"></script>
+<script src="../../api_desertion/common.js"></script>
+<script src="../../src/js/zepto.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="returnsDetail" type="text/x-handlebars-template">
+  {{#content}}
+  <div class="am-list-news-hd am-cf">
+    <!--带更多链接-->
+			<span class="c-org">
+				<a href="#"><i class="am-icon-archive am-fl"></i><em>{{store-name}}</em></a>
+				<span class="am-list-news-more am-fr"></span>
+			</span>
+  </div>
+  <div class="am-list-news-bd">
+    <ul class="am-list">
+      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+        <div class="am-col col-sm-4 am-list-thumb">
+          <a href="javascript:void(0);">
+            <img class="am-img-message" src="{{commodity-img}}" alt=""/>
+          </a>
+        </div>
+        <div class="am-col col-sm-8 am-list-main">
+          <h3 class="am-list-item-hd">
+            <a href="#">{{commodity-name}}</a>
+          </h3>
+
+          <div class="am-list-item-text">
+            <ul>
+              <li><span>订单编号：</span>{{order-number}}</li>
+              <li><i class="am-icon-cny"></i><span>{{commodity-price}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="am-g am-list-item-annotation">
+        <span class="am-fl">运费：<em><i class="am-icon-cny"></i>{{freight}}</em></span>
+      </li>
+    </ul>
+    <ul class="am-list refund-remark">
+      <li><span>付款单号：</span><span>{{payment}}</span></li>
+      <!--<li><span>支付方式：</span><span>{{payment-m}}</span></li>-->
+    </ul>
+  </div>
+  {{/content}}
+</script>
+<script>
+  /** 我不说话 就静静地看着你们 */
+  /** @namespace item.refund_state */
+  /** @namespace item.refund_amount */
+  /** @namespace item.order_sn */
+  /** @namespace item.reason_id */
+  /** @namespace item.store_name */
+  /** @namespace item.refun_sn */
+  /** @namespace result.refund */
+  /** @namespace v.add_time */
+  /** @namespace v.admin_time */
+  /** @namespace v.seller_time */
+  /** @namespace result.datas.return_info */
+
+  $(function () {
+    var key = getcookie('key');
+    if (key == '') {
+      var urlarray = geturlstring();
+      if (urlarray['key']) {
+        key = urlarray['key'];
+      } else {
+        location.href = 'login.html';
+      }
+    }
+
+    function initPage() {
+      var refund_id = GetQueryString("refund_id");
+      $.ajax({
+        type: 'post',
+        url: ApiUrl + "/index.php?act=member_refund_return&op=member_return_info",
+        data: {key: key,refund_id:refund_id},
+        dataType: "json",
+        success: function (result) {
+          var v = result.datas.return_info;
+          var returns_info = {
+            'store-name': v.store_name,
+            'order-number': v.order_sn,
+            'commodity-name': v.goods_name,
+            'commodity-img': v.goods_image,
+            'commodity-price': v.refund_amount,
+            'payment': v.refun_sn
+          };
+          var returnsPage = {content: returns_info};
+          var source = $('#returnsDetail').html();
+          var template = Handlebars.compile(source);
+          $('#content-detail').html(template(returnsPage));
+          $('#refundPrice').append(v.refund_amount);
+
+          if (v.add_time > 0) {
+            $('#applyTime').addClass('am-active')
+          }
+          if (v.seller_time > 0) {
+            $('#disposeTime').addClass('am-active')
+          }
+          if (v.admin_time > 0) {
+            $('#finishTime').addClass('am-active')
+          }
+        }
+      })
+    }
+
+    initPage();
+  });
+</script>
+</body>
+</html>

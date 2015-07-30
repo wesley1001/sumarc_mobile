@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <!--<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">-->
+  <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
+  <link rel="stylesheet" href="../../utils/iCheck/square/_all.css"/>
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">选择收货地址</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="ads_create.html">
+      <i class="am-header-icon am-icon-edit"></i>
+    </a>
+  </div>
+</header>
+<div id="ads_list" class="address-sel"></div>
+<div class="add-address">
+  <a href="ads_create.html">
+    <span></span>
+    <span>添加新地址</span>
+  </a>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my_address">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">Hello Sumarc</div>
+    <div class="am-modal-bd">
+      你，确定要删除这条记录吗？
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../../js/libs/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/libs/handlebars.min.js"></script>
+<script id="selectTemplate" type="text/x-handlebars-template">
+  {{#address_cont}}
+    <div class="default-address">
+      <dl class="address-list">
+        <dd class="contact">
+          <div class="address-ic" data-address-id="{{ address_id }}"><input type="radio" name="iCheck"></div>
+          <span class="name">收货人：<strong>{{ true_name }}</strong></span>
+          <span class="del-address"><i class="am-icon-trash am-icon-sm"></i></span>
+          <span class="tel-phone">{{ mob_phone }}</span>
+        </dd>
+        <dd class="address-cont">
+          <span>收货地址：</span>
+          <p>{{ area_info }}--{{ address }}</p>
+        </dd>
+    </dl>
+  </div>
+  {{/address_cont}}
+</script>
+<script type="text/javascript" src="../../js/libs/amazeui.min.js"></script>
+<script type="text/javascript" src="../../utils/iCheck/icheck.min.js"></script>
+<script type="text/javascript" src="../../js/services/globalService.js"></script>
+<script type="text/javascript" src="../../js/control/addrSelectController.js"></script>
+</body>
+</html>

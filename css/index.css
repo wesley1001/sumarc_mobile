@@ -1,0 +1,1057 @@
+
+/* =======================================================
+        Common form controls
+==========================================================*/
+
+.am-form select,
+.am-form textarea,
+.am-form input[type="text"],
+.am-form input[type="password"],
+.am-form input[type="datetime"],
+.am-form input[type="datetime-local"],
+.am-form input[type="date"],
+.am-form input[type="month"],
+.am-form input[type="time"],
+.am-form input[type="week"],
+.am-form input[type="number"],
+.am-form input[type="email"],
+.am-form input[type="url"],
+.am-form input[type="search"],
+.am-form input[type="tel"],
+.am-form input[type="color"],
+.am-form-field {
+width: 100%;
+border: none;
+outline: none;
+display: block;
+color: #FFFFFF;
+background: none;
+line-height: 1.6;
+font-size: 1.4rem;
+vertical-align: middle;
+padding: 0.325em 0.625em 0.325em 10rem;
+-webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.am-form select:focus,
+.am-form textarea:focus,
+.am-form input[type="text"]:focus,
+.am-form input[type="password"]:focus,
+.am-form input[type="datetime"]:focus,
+.am-form input[type="datetime-local"]:focus,
+.am-form input[type="date"]:focus,
+.am-form input[type="month"]:focus,
+.am-form input[type="time"]:focus,
+.am-form input[type="week"]:focus,
+.am-form input[type="number"]:focus,
+.am-form input[type="email"]:focus,
+.am-form input[type="url"]:focus,
+.am-form input[type="search"]:focus,
+.am-form input[type="tel"]:focus,
+.am-form input[type="color"]:focus,
+.am-form-field:focus {
+width: 100%;
+border: none;
+outline: 0;
+background-color: #fd9401;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+
+.am-slider .am-slides img {min-height: 130px; }
+
+h3 {font-weight: normal;}
+
+.news-title {
+    height: 36px;
+    padding: 8px 26px;
+    }
+.news-title a {
+    font-size: 16px;
+    line-height: 28px;
+    }
+.news-title img {
+    max-width: 36px;
+    max-height: 26px;
+    margin-right: 10px;
+    float: left;
+    position: relative;
+    }
+.news-title h3 {
+    font-size: 16px;
+    line-height: 26px;
+    cursor: default;}
+
+
+
+
+/*======================================================
+                        Index-page
+=======================================================*/
+
+#site_view {
+    height: 110px;
+    overflow: hidden;
+    }
+
+.website-nav {
+    width: 100%;
+    height: auto;
+    padding: .75rem 0;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 2px #e6e6e6;
+    display: inline-block;
+    }
+
+.website-item {
+    width: 20%;
+    margin:0 2.5%;
+    float: left;
+    display: inline-block;
+    }
+
+.website-item a {
+    display: block;
+    text-align: center;
+    }
+
+.website-item h3 {
+    bottom: 0;
+    margin-top: 4px;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    text-align: center;
+    position: relative;
+    }
+
+.website-item img {
+    text-align: center;
+    margin: 0 auto;
+    }
+
+.c-promotional {
+    min-height: 145px;
+    margin-bottom: 15px;
+    background-color: #FFFFFF;
+    }
+
+.promo-item {
+    width: 33.3%;
+    min-height: 145px;
+    float: left;
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    border-right: 1px solid #E6E6E6;
+    }
+.promo-item:last-child { border-right: none;}
+
+.promo-item h3 {
+    top: 4px;
+    left: 4px;
+    width: 100%;
+    color: #ff9500;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    position: relative;
+    display: inline-block;
+    }
+
+.promo-item p {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    margin-left: 4px;
+    }
+
+.c-furniture {
+    height: 210px;
+    }
+
+.c-furniture .description {
+    left: 4px;
+    color: #6d6d6d;
+    z-index: 10;
+    position: absolute;
+    }
+
+
+.promotions, .c-furniture,
+.c-accessories {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 2px #e6e6e6;
+    }
+
+.c-furniture h3,
+.both-grid > .item-grid h3,
+.access-grid > .three-grid h3,
+.both-grid-last .item-grid h3,
+.access-grid > .appliances h3 {
+    top: 2px;
+    left: 4px;
+    width: 100%;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    position: relative;
+    display: inline-block;
+    }
+
+
+.both-grid > .item-grid h3 {
+    text-align: right;
+    padding-right: 8px;
+    position: relative;
+    }
+
+
+
+.living-room,.appliances {
+    clear: both;
+    width: 33%;
+    height: 100%;
+    float: left;
+    display: inline-block;
+    position: relative;
+    background-color: #FFFFFF;
+    }
+
+.tian-grid, .three-grid {
+    width: 67%;
+    height: 100%;
+    float: left;
+    display: inline-block;
+    position: relative;
+    background-color: #FFFFFF;
+    }
+
+.tian-grid > .item-grid {
+    width: 50%;
+    height: 50%;
+    float: left;
+    display: table;
+    position: relative;
+    }
+.tian-grid > .item-grid:first-child {
+    border-right: 1px solid #E6E6E6;
+    }
+.tian-grid > .item-grid:last-child {
+    margin-top: -1px;
+    margin-left: -1px;
+    border-top: 1px solid #E6E6E6;
+    border-left: 1px solid #E6E6E6;
+    }
+
+.tian-grid > .item-grid:nth-last-child(2) {
+    margin-top: -1px;
+    border-top: 1px solid #E6E6E6;
+    }
+
+.both-grid {
+    clear: both;
+    height: 120px;
+    position: relative;
+    margin-bottom: 15px;
+    border-top: 1px solid #E6E6E6;
+    background-color: #FFFFFF;
+    }
+
+.both-grid > .item-grid {
+    width: 50%;
+    height: auto;
+    display: block;
+    float: left;
+    position: relative;
+    margin-bottom: 15px;
+    background-color: #FFFFFF;
+    }
+
+.both-grid > .item-grid a {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    background-color: #ffffff;
+    }
+
+.both-grid > .item-grid:first-child {
+    margin-right: -1px;
+    }
+.both-grid > .item-grid:last-child {
+    border-left: 1px solid #E6E6E6;
+    }
+
+.both-grid .description {
+    top: 25px;
+    right: 2px;
+    color: #6d6d6d;
+    text-align: right;
+    position: absolute;
+    }
+
+.c-materials {
+    min-height: 240px;
+    margin-bottom: 15px;
+    background-color: #FFFFFF;
+    }
+
+.nine-grid > .item-grid {
+    width: 33.333%;
+    height: 120px;
+    float: left;
+    display: inline-block;
+    position: relative;
+    }
+.nine-grid > .item-grid a{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    }
+
+.nine-grid > .item-grid h3 {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    position: absolute;
+    z-index: 10;
+    }
+
+.c-materials .description {
+    top: 28px;
+    left: 6%;
+    z-index: 10;
+    color: #6d6d6d;
+    text-align: center;
+    position: absolute;
+    }
+
+.living-room img,
+.c-materials img, .access-grid img,
+.both-grid-last .item-grid img {
+    bottom: 0;
+    margin-bottom: 5px;
+    position: absolute;
+    }
+
+.promo-item img {
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    }
+
+.nine-grid > .item-grid:nth-child(2),
+.nine-grid > .item-grid:nth-child(4),
+.nine-grid > .item-grid:nth-child(6) {
+    background-color: #f2f2f2;
+    }
+
+.access-grid {
+    height: 188px;
+    float: left;
+    display: block;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    }
+
+.access-grid .appliances{
+    height: 100%;
+    }
+
+.access-grid .three-grid > .item-grid {
+    width: 100%;
+    height: 50%;
+    display: inline-block;
+    position: relative;
+    }
+
+.access-grid .appliances a,
+.access-grid .three-grid a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    }
+
+
+.access-grid .item-grid:first-child {
+    margin-top: -1px;
+    border-bottom: 1px solid #E6E6E6;
+    }
+.access-grid .item-grid:last-child {
+    margin-right: -1px;
+    border-left: 1px solid #E6E6E6;
+    }
+
+.access-grid .item-grid:nth-child(2),
+.access-grid .item-grid:nth-child(3) {
+    width: 50%;
+    float: left;
+    }
+
+.access-grid .description {
+
+    top: 23px;
+    left: 4px;
+    z-index: 10;
+    color: #6d6d6d;
+    position: absolute;
+    }
+.both-grid-last .description {
+    top: 25px;
+    right: 4px;
+    color: #6d6d6d;
+    z-index: 10;
+    position: absolute;
+    }
+
+.both-grid-last h3 {
+   text-align: right;
+    padding-right: 10px;
+    }
+
+.both-grid-last h3,
+.access-grid > .appliances h3,
+.access-grid > .three-grid h3 {
+    z-index: 10;
+    position: absolute;
+    }
+
+
+
+.both-grid-last {
+    clear: both;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid #E6E6E6;
+    background-color: #FFFFFF;
+    }
+
+.both-grid-last .item-grid {
+    width: 50%;
+    height: inherit;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    }
+.both-grid-last .item-grid a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    }
+
+.both-grid-last .item-grid:first-child {
+    margin-left: -1px;
+    }
+
+.both-grid-last .item-grid:nth-child(2){
+    border-left: 1px solid #E6E6E6;
+    }
+
+.living-room,.appliances {
+    border-right: 1px solid #E6E6E6;
+    }
+
+
+.nav-title {
+    clear: both;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    display: table;
+    }
+
+.nav-title.tt > i {
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-top: 4px;
+    line-height: 32px;
+    position: relative;
+    }
+
+.nav-title.tt h3 {
+    margin-left: 12px;
+    }
+
+.nav-title.white {
+    background-color: #FFFFFF;
+    }
+
+.nav-title h3 {
+    width: 50%;
+    display: inline-block;
+    position: relative;
+    }
+
+.nav-title h3.left {
+    left: 8px;
+    text-align: left;
+    }
+
+.nav-title h3.right {
+    right: 8px;
+    text-align: right;
+    }
+
+.c-furniture .nav-title > h3.left {
+    background-color: #FFFFFF;
+    }
+
+.website-nav, .c-promotional,
+.c-furniture .both-grid,
+.nine-grid, .access-grid {
+    width: 100%;
+    position: relative;
+    }
+
+.access-grid img {
+    right: 4px;
+    }
+
+
+
+@media only screen and (min-width:320px) {
+    .living-room, .appliances {width: 43%;}
+    .tian-grid, .three-grid {width: 57%;}
+
+    .promo-item p{ font-size: 1rem;}
+
+    .website-item h3,
+    .c-furniture h3, .both-grid h3,
+    .access-grid > .three-grid h3,
+    .both-grid-last .item-grid h3 {
+        font-size: 1.4rem;
+        }
+
+    .both-grid-last .description,
+    .access-grid .description,
+    .c-materials .description,
+    .both-grid .description {
+        width: 9rem;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        }
+    .c-furniture .description{
+        font-size: 1rem;
+        line-height: 1.4rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        }
+
+
+    .appliances .description {
+        width: 10rem;
+        }
+
+    .both-grid-last .description {
+        width: 8rem;
+        text-align: right;
+        }
+
+    .nine-grid img {
+        left: 1%;
+        }
+
+    }
+
+@media only screen and (min-width: 375px) {
+
+    .c-furniture { height: 235px;}
+
+    .living-room, .appliances {width: 46%;}
+    .tian-grid, .three-grid {width: 53%;}
+
+    .c-furniture h3, .both-grid h3,
+    .access-grid > .three-grid h3,
+    .both-grid-last .item-grid h3 {
+        font-size: 1.4rem;
+        }
+
+    .furniture h3, .materials h3,
+    .accessories h3, .panorama h3 {
+        font-size: 16px;
+        text-align: center;
+        margin: 6px 0;
+        }
+
+    .both-grid-last .description,
+    .access-grid .description,
+    .c-materials .description,
+    .c-furniture .description,
+    .both-grid .description {
+        width: 7rem;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        text-overflow: ellipsis;
+        /*white-space: nowrap;*/
+        overflow: hidden;
+        }
+    .access-grid .description {
+        width: 9rem;
+        }
+    .c-materials .description {
+        width: 10rem;
+        }
+
+    .access-grid .appliances img {
+        padding-top: 15px;
+        }
+
+    .outdoors img, .office img,
+    .catering img, .commodity img {
+        max-width: 95px;
+        }
+
+    .both-grid > .item-grid {
+        height: 145px;
+        margin-bottom: 15px;
+        }
+    }
+
+@media only screen and (min-width:410px) {
+    #site_view {height:120px;}
+    .c-furniture {height: 240px;}
+    .access-grid {height: 200px;}
+
+    .nine-grid img {left: 15%;}
+    }
+
+@media only screen and (min-width:460px) {
+
+    .website-item h3 { margin-top: 8px;}
+    .c-furniture { height: 275px;}
+
+    .both-grid-last .description,
+    .access-grid .description,
+    .c-materials .description,
+    .c-furniture .description,
+    .both-grid .description {
+        width: 11rem;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        }
+    .c-materials .description {
+        width: 10rem;
+        left: 12%;
+        }
+
+    #site_view {height:130px;}
+
+    }
+
+@media only screen and (min-width:480px) {
+    #site_view {height:130px;}
+    /*.c-materials .description { left: 32%;}*/
+    }
+
+@media only screen and (min-width:640px) {
+    .c-furniture {
+        height: 335px;
+        }
+
+    .c-materials .description {
+        left: 18%;
+        }
+    .access-grid {
+        height: 230px;
+        }
+    }
+
+/*@media only screen and (min-width:318px) {*/
+/*.am-container {*/
+/*margin-left: -1.5rem;*/
+/*margin-right: -1.5rem;*/
+/*}*/
+/*}*/
+
+
+
+
+/*.promotions h3 {*/
+    /*font-size: 18px;*/
+    /*color: #ff9500;*/
+    /*display: block;*/
+    /*line-height: 26px;*/
+    /*padding-top: 15px;*/
+    /*}*/
+/*.promotions p {*/
+    /*font-size: 14px;*/
+    /*color: #c4c4c4;*/
+    /*display: block;*/
+    /*line-height: 16px;*/
+    /*padding-bottom: 15px;*/
+    /*}*/
+/*.promotions a {*/
+    /*padding-right: -0.2rem;*/
+    /*border-right: 0.2rem solid #E6E6E6;*/
+    /*}*/
+/*.news-title h3 {*/
+    /*font-size: 16px;*/
+    /*}*/
+/*.c-materials .news-title h3,*/
+/*.c-furniture .news-title h3,*/
+/*.c-accessories .news-title h3 {*/
+    /*font-size: 24px;*/
+    /*}*/
+
+/*.c-furniture .description,*/
+/*.c-accessories .description {*/
+    /*color: #c4c4c4;*/
+    /*}*/
+
+/*.c-furniture .school-room img,*/
+/*.c-furniture .dining-room img,*/
+/*.c-furniture .children-room img,*/
+/*.c-furniture .bedroom img,*/
+/*.c-accessories .bedclothes img,*/
+/*.c-accessories .decorations img,*/
+/*.c-accessories .fabrics img {*/
+    /*padding: 8px 0;*/
+    /*float: right;*/
+    /*}*/
+
+/*.school-room{*/
+    /*border-right: 1px solid #E6E6E6;*/
+    /*border-bottom: 1px solid #E6E6E6;*/
+    /*}*/
+
+/*.dining-room, .bedclothes {*/
+    /*border-bottom: 1px solid #E6E6E6;*/
+    /*}*/
+/*.children-room, .decorations {*/
+    /*border-right: 1px solid #E6E6E6;*/
+    /*}*/
+/*.catering, .commodity {*/
+    /*min-height: 130px;*/
+    /*padding-top: 10px;*/
+    /*background-color: #FFFFFF;*/
+    /*position: relative;*/
+    /*}*/
+
+/*.catering h3, .commodity h3,*/
+/*.office p.description,*/
+/*.outdoors p.description,*/
+/*.catering p.description,*/
+/*.commodity p.description{*/
+    /*position: relative;*/
+    /*float: right;*/
+    /*padding-right: 0.6rem;*/
+    /*display: block;*/
+    /*clear: both;*/
+    /*}*/
+
+/*.office h3.title18, .outdoors h3.title18,*/
+/*.catering h3.title18, .commodity h3.title18 {*/
+    /*float: right;*/
+    /*position: relative;*/
+    /*display: block;*/
+    /*}*/
+
+
+/*.office, .catering {border-right: 1px solid #E6E6E6;}*/
+
+/*.outdoors img, .office img,*/
+/*.catering img, .commodity img {*/
+    /*float: left;*/
+    /*padding: 15px 0;*/
+    /*bottom: 0;*/
+    /*position: absolute;*/
+    /*}*/
+
+/*.c-materials.first,*/
+/*.c-accessories.first {*/
+    /*margin-top: 15px;*/
+    /*}*/
+
+/*#acces-f {*/
+    /*padding-bottom: 20px;*/
+    /*}*/
+
+/*@media only screen and (min-width: 318px) {*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 12px;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+
+    /*p.description {*/
+        /*width: 4rem;*/
+        /*font-size: 12px;*/
+        /*line-height: 14px;*/
+        /*color: #c4c4c4;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+    /*.outdoors img, .office img,*/
+    /*.catering img, .commodity img {*/
+        /*max-height: 97px;*/
+        /*}*/
+
+    /*.school-room img,.dining-room img,*/
+    /*.children-room img,.bedroom img,*/
+    /*.bedclothes img,.decorations img,*/
+    /*.fabrics img {*/
+        /*max-height: 68px;*/
+        /*}*/
+
+    /*}*/
+
+/*@media only screen and (min-width: 321px){*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 14px;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+    /*p.description {*/
+        /*width: 6rem;*/
+        /*font-size: 12px;*/
+        /*line-height: 14px;*/
+        /*color: #c4c4c4;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+    /*.school-room img,.dining-room img,*/
+    /*.children-room img,.bedroom img,*/
+    /*.bedclothes img,.decorations img,*/
+    /*.fabrics img, {*/
+        /*max-height: 69px;*/
+        /*}*/
+    /*}*/
+
+
+/*@media only screen and (min-width: 340px) {*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 14px;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+    /*p.description {*/
+        /*width: 6rem;*/
+        /*font-size: 12px;*/
+        /*line-height: 14px;*/
+        /*color: #c4c4c4;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+    /*.school-room img,.dining-room img,*/
+    /*.children-room img,.bedroom img,*/
+    /*.bedclothes img,.decorations img,*/
+    /*.fabrics img {*/
+        /*max-height: 74px;*/
+        /*}*/
+
+    /*.outdoors img, .office img,*/
+    /*.catering img, .commodity img {*/
+        /*max-width: 95px;*/
+        /*}*/
+    /*}*/
+
+
+
+/*@media only screen and (min-width: 421px) {*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 16px;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+    /*p.description {*/
+        /*width: 8rem;*/
+        /*font-size: 12px;*/
+        /*line-height: 14px;*/
+        /*color: #c4c4c4;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+    /*.c-furniture .living-room {*/
+        /*height: 238px;*/
+        /*}*/
+
+    /*.school-room img,.dining-room img,*/
+    /*.children-room img,.bedroom img,*/
+    /*.bedclothes img,.decorations img,*/
+    /*.fabrics img, .outdoors img, .office img,*/
+    /*.catering img, .commodity img {*/
+        /*max-height: 93px;*/
+        /*}*/
+    /*}*/
+
+/*@media only screen and (min-width: 640px) {*/
+    /*p.description {*/
+        /*width: 6rem;*/
+        /*font-size: 12px;*/
+        /*line-height: 14px;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+        /*.school-room img,.dining-room img,*/
+        /*.children-room img,.bedroom img,*/
+        /*.bedclothes img,.decorations img,*/
+        /*.fabrics img {*/
+        /*max-height: 150px;*/
+        /*}*/
+    /*.catering img,.commodity img,*/
+    /*.office img,.outdoors img{*/
+        /*max-height: 130px;*/
+        /*}*/
+    /*.c-furniture .living-room {*/
+        /*height: 352px;*/
+        /*}*/
+    /*.outdoors img, .office img,*/
+    /*.catering img, .commodity img {*/
+        /*max-width: 250px;*/
+        /*}*/
+    /*}*/
+
+/*@media only screen and (min-width: 720px) {*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 2.2rem;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+    /*.news-title a {*/
+        /*font-size: 1.8rem;*/
+        /*line-height: 28px;*/
+        /*}*/
+
+    /*p.description {*/
+        /*width: 18rem;*/
+        /*font-size: 1.8rem;*/
+        /*line-height: 2.4rem;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+    /*.school-room img,.dining-room img,*/
+    /*.children-room img,.bedroom img,*/
+    /*.bedclothes img,.decorations img,*/
+    /*.fabrics img {*/
+        /*max-height: 260px;*/
+        /*}*/
+    /*.office img, .outdoors img,*/
+    /*.catering img, .commodity img {*/
+        /*max-height: 130px;*/
+        /*}*/
+
+    /*.living-room h3, .school-room h3,*/
+    /*.dining-room h3 , .children-room h3,*/
+    /*.bedroom h3, .office h3,.outdoors h3,*/
+    /*.promotions h3, .appliances h3,*/
+    /*.bedclothes h3, .decorations h3,*/
+    /*.fabrics h3, .catering h3,*/
+    /*.commodity h3 {*/
+        /*font-size: 2.2rem;*/
+        /*line-height: 2.6rem;*/
+        /*}*/
+
+    /*.c-furniture .living-room {*/
+        /*min-height: 396px;*/
+        /*}*/
+
+    /*}*/
+
+/*@media only screen and (min-width: 768px) {*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 2.2rem;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+    /*.news-title a {*/
+        /*font-size: 1.8rem;*/
+        /*line-height: 28px;*/
+        /*}*/
+
+    /*p.description {*/
+        /*width: 18rem;*/
+        /*font-size: 1.8rem;*/
+        /*line-height: 2.4rem;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+    /*.school-room img,.dining-room img,*/
+    /*.children-room img,.bedroom img,*/
+    /*.bedclothes img,.decorations img,*/
+    /*.fabrics img {*/
+        /*max-height: 150px;*/
+        /*}*/
+    /*.catering img,.commodity img,*/
+    /*.office img,.outdoors img{*/
+        /*max-height: 130px;*/
+        /*}*/
+
+    /*.living-room h3, .school-room h3,*/
+    /*.dining-room h3 , .children-room h3,*/
+    /*.bedroom h3, .office h3,.outdoors h3,*/
+    /*.promotions h3, .appliances h3,*/
+    /*.bedclothes h3, .decorations h3,*/
+    /*.fabrics h3, .catering h3,*/
+    /*.commodity h3 {*/
+        /*font-size: 2.2rem;*/
+        /*line-height: 2.6rem;*/
+        /*}*/
+    /*}*/
+
+/*@media only screen and (min-width: 820px) {*/
+    /*.furniture h3, .materials h3,*/
+    /*.accessories h3, .panorama h3 {*/
+        /*font-size: 2.2rem;*/
+        /*text-align: center;*/
+        /*margin: 6px 0;*/
+        /*}*/
+    /*.news-title a {*/
+        /*font-size: 1.8rem;*/
+        /*line-height: 28px;*/
+        /*}*/
+
+    /*p.description {*/
+        /*width: 18rem;*/
+        /*font-size: 1.8rem;*/
+        /*line-height: 2.4rem;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        /*overflow: hidden;*/
+        /*}*/
+
+    /*.living-room h3, .school-room h3,*/
+    /*.dining-room h3 , .children-room h3,*/
+    /*.bedroom h3, .office h3,.outdoors h3,*/
+    /*.promotions h3, .appliances h3,*/
+    /*.bedclothes h3, .decorations h3,*/
+    /*.fabrics h3, .catering h3,*/
+    /*.commodity h3 {*/
+        /*font-size: 2.2rem;*/
+        /*line-height: 2.6rem;*/
+        /*}*/
+
+    /*.c-furniture .living-room {*/
+        /*min-height: 364px;*/
+        /*}*/
+    /*}*/

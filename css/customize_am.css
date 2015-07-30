@@ -1,0 +1,116 @@
+/*=======================================================================
+    Cover Default AMAZE-UI
+=======================================================================*/
+
+/*====================am-tabs====================*/
+
+
+.am-nav-tabs > li > a {
+    margin: 0;
+    background-color: #FFFFFF;
+    }
+.am-nav-tabs > li.am-active > a,
+.am-nav-tabs > li.am-active > a:hover,
+.am-nav-tabs > li.am-active > a:focus {
+    color: #ff9500;
+    }
+
+/*============= search-input-group =============*/
+
+.am-input-group-sm > .am-form-field,
+.am-input-group-sm > .am-input-group-label {
+    padding: 2px 6.000000000000002px !important;
+    font-size: 1.8rem !important;
+    }
+
+.am-input-group-sm > .am-input-group-btn > .am-btn {
+    padding: 0 !important;
+    font-size: 1.8rem !important;
+    border: 0;
+    }
+
+/*==================Modal======================*/
+
+.am-modal-actions-group {
+    margin: 0;
+    text-align: right;
+    padding: 0 8px 10px;
+    background-color: #FFFFFF;
+    }
+.am-btn-secondary.magenta {
+    color: #ffffff;
+    background-color: #ea5b4c;
+    border-color: #ea5b4c;
+    }
+
+strong {
+    font-style: normal;
+    font-weight: normal;
+    }
+/*====================Header===================*/
+
+.am-header-one .am-header-title,
+.am-header-one .am-header-nav > a {
+    color: #ff9500;
+    font-size: 1.6rem;
+    }
+.am-list.am-list-sm > li > a {
+    padding: 0;
+    }
+
+/*======================Modal==================*/
+
+.am-modal-hd {
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    }
+.am-modal-bd {
+    padding: 10px 2px;
+    }
+.am-modal-prompt-input {
+    width: 100%;
+    margin: 0 auto;
+    border: 0;
+    }
+
+/*======================Input===================*/
+
+input[type="text"] {
+    width: 70%;
+    border: none;
+    }
+
+input[type="text"]:focus {
+    outline: 0;
+    border-bottom: 1px solid rgba(255, 149, 0, 1);
+    }
+
+input:not([type="radio"]):not([type="checkbox"]){
+    vertical-align: baseline;
+    }
+
+
+/*=================AM-Modal-Actions==============*/
+
+.am-modal-actions-header {
+    height: 32px;
+    padding: 0;
+    }
+
+.am-modal-actions-header .icon-close {
+    top: 0;
+    right: 0;
+    float: right;
+    position: absolute;
+    display: inline-block;
+    }
+.am-modal-actions-group.btn-popup {
+    width: 100%;
+    min-height: 52px;
+    padding: 10px;
+    }
+.btn-popup .am-btn {
+    float: right;
+    padding: 0.425rem 2.6rem;
+    }
+

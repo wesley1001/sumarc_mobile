@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--Tile icon for Win8 (144x144 + tile color)-->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+</head>
+
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-header-icon am-icon-angle-left"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">个人信息</h1>
+</header>
+<div class="my-setup" id="info_list">
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="myInfoTemplate" type="text/x-handlebars-template">
+  <ul class="am-list">
+    {{#content}}
+    <li><a href="javascript:void(0);">姓名：<span>{{ name }}</span></a></li>
+    <li><a href="javascript:void(0);">真实姓名：<span>{{ t_name }}</span></a></li>
+    <li><a href="javascript:void(0);">性别：<span>{{ sex }}</span></a></li>
+    <li><a href="javascript:void(0);">手机：<span>{{ tel_phone }}</span></a></li>
+    <li><a href="javascript:void(0);">邮箱：<span>{{ e_mail }}</span></a></li>
+    <li><a href="javascript:void(0);">QQ：<span>{{ qq }}</span></a></li>
+    <li><a href="javascript:void(0);">旺旺：<span>{{ ww }}</span></a></li>
+    <li><a href="javascript:void(0);">生日：<span>{{ b_day }}</span></a></li>
+    <li><a href="javascript:void(0);">区域：<span>{{ area }}</span></a></li>
+    {{/content}}
+  </ul>
+</script>
+<script src="../../js/control/pers_infoController.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <style>
+    body {background-color: #FFFFFF;}
+    .m-notify .am-tabs-bd .am-tab-panel {
+      padding: 0 8px;
+      }
+  </style>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">消息通知</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="notify_set.html" class="">
+      <i class="am-header-icon am-icon-cog"></i>
+    </a>
+  </div>
+</header>
+<div class="m-notify">
+  <div class="am-tabs" data-am-tabs style="height: 100%;">
+    <ul class="am-tabs-nav am-nav am-nav-tabs c-tab-list">
+      <li class="am-active"><a href="#notify_user">收到消息</a></li>
+      <li><a href="#notify_system">系统消息</a></li>
+    </ul>
+    <div class="am-tabs-bd">
+      <div id="notify_user" class="am-tab-panel am-active"></div>
+      <div id="notify_system" class="am-tab-panel"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="notify_u" type="text/x-handlebars-template">
+  {{#content}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="am-icon-envelope-o"></i>
+          <span class="cart-list-title">{{ user_name }}</span>
+          <!--<span class="edit-tool">{{ state_desc }}</span>-->
+        </div>
+      </div>
+    </dd>
+    <dd>
+      <div id="confirm-orders" class="cart-list-bd">
+        <div id="orders_text">
+          <p class="">{{ message_cont }}</p>
+          <p class="">{{ message_desc }}</p>
+        </div>
+      </div>
+    </dd>
+    <dd>
+      <div class="orders-footnote">
+        <p><strong>{{ update_time }}</strong></p>
+      </div>
+    </dd>
+  </dl>
+  {{/content}}
+</script>
+<script id="notify_s" type="text/x-handlebars-template">
+  {{#content}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="am-icon-envelope-o"></i>
+          <span class="cart-list-title">{{ message_title }}</span>
+          <!--<span class="edit-tool">{{ state_desc }}</span>-->
+        </div>
+      </div>
+    </dd>
+    <dd>
+      <div class="notify-list-bd">
+        <p>{{{ message_cont }}}</p>
+      </div>
+    </dd>
+    <dd>
+      <div class="orders-footnote">
+        <p><strong>{{ update_time }}</strong></p>
+      </div>
+    </dd>
+  </dl>
+  {{/content}}
+</script>
+<script src="../../js/control/notify_infoController.js"></script>
+</body>
+</html>

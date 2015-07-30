@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+      <span class="am-header-nav-title">退款及退货</span>
+    </a>
+  </div>
+</header>
+<div id="refunds-list" class="am-container"></div>
+<script src="../../js/services/globalService.js"></script>
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="refunds-template" type="text/x-handlebars-template">
+  <ul>
+    {{#each content}}
+    <li class="am-list-message">
+      <div class="am-list-message-hd">
+        <span><i class="am-icon-smile-o am-fl"></i>{{store-name}}</span>
+        <span class="c-org am-fr">{{service-state}}</span>
+      </div>
+      <div class="am-g am-list-message-bd">
+        <div class="am-col col-sm-4">
+          <img class="am-img-message" src="{{goods-img}}" alt=""/>
+        </div>
+        <div class="am-col col-sm-8">
+          <ul class="message-content">
+            <li><a href="javascript:void(0);"></a>{{goods-name}}</li>
+            <li><i class="am-icon-cny am-fl"></i><span>{{goods-price}}</span></li>
+            <li>订单编号：<span>{{order-number}}</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="am-list-message-ft">
+        <span class="am-fl">投诉时间：<em>{{complain-dateTime}}</em></span>
+        <a href="{{refunds-desc}}" class="am-btn am-btn-orange am-btn-xs am-fr">查看详情</a>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</script>
+<script>
+  $(function(){
+
+      var key = getKey('key');
+      /** @namespace item.refund_state */
+      /** @namespace item.refund_amount */
+      /** @namespace item.order_sn */
+      /** @namespace item.reason_id */
+      /** @namespace item.store_name */
+
+      function initPageRefunds() {
+        $.ajax({
+          type: 'post',
+          url: ApiUrl + "/index.php?act=member_refund_return",
+          data: {key: key},
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+//            var l = result.datas.list
+            var refunds_content = data.datas.list.map(function (v) {
+              return {
+                'store-name': v.store_name,
+                'goods-name': v.goods_name,
+                'goods-price': v.refund_amount,
+                'order-number': v.order_sn,
+                'goods-img': '/data/upload/shop/common/' + v.goods_image,
+                'complain-dateTime': (new Date(+v.add_time * 1000)).toLocaleDateString().split('/').join('-'),
+                'service-state': (function () {
+                  switch (v.refund_state) {
+                    case "1" :
+                      return "处理中";
+                      break;
+                    case "2" :
+                      return "待管理员处理";
+                      break;
+                    case "3" :
+                      return "已完成";
+                      break;
+                  }
+                })(),
+                'refunds-desc': (function () {
+                  switch (v.refund_type) {
+                    case "1" :
+                      return 'refund-detail.html?refund_id=' + v.refund_id;
+                      break;
+                    case "2" :
+                      return 'returns-detail.html?refund_id=' + v.refund_id;
+                      break;
+                  }
+                })()
+              }
+            });
+
+            var refunds_list = {content:refunds_content};
+            var template = Handlebars.compile($('#refunds-template').html());
+            $('#refunds-list').html(template(refunds_list));
+          }
+        })
+      }
+    initPageRefunds();
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">我的订单</h1>
+</header>
+<div class="m-mall">
+  <div class="am-tabs" data-am-tabs style="height: 100%;">
+    <ul class="am-tabs-nav am-nav am-nav-tabs c-tab-list">
+      <li class="am-active"><a href="#item_all">全部</a></li>
+      <li><a href="#item_pay">待付款</a></li>
+      <!--<li><a href="#tab_send">待发货</a></li>-->
+      <li><a href="#item_receive">待收货</a></li>
+      <li><a href="#item_comment">待评价</a></li>
+    </ul>
+    <div class="am-tabs-bd orders-none">
+      <div id="item_all" class="am-tab-panel am-active go-inspect"></div>
+      <div id="item_pay" class="am-tab-panel"></div>
+      <div id="item_receive" class="am-tab-panel"></div>
+      <div id="item_comment" class="am-tab-panel"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="allTemplate" type="text/x-handlebars-template">
+  {{#content}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="icon-shop"></i>
+          <span class="cart-list-title">{{ store_name }}</span>
+          <span class="edit-tool">{{ state_desc }}</span>
+        </div>
+      </div>
+    </dd>
+    {{#each orders_cont}}
+    <dd>
+      <div id="confirm-orders" class="cart-list-bd">
+        <div class="orders-img">
+          <img src="{{ goods_image_url }}" alt=""/>
+        </div>
+        <div id="orders_text">
+          <p class="orders-name">{{ goods_name }}</p>
+
+          <p class="orders-price">
+            <span class="current-price">￥{{ goods_price }}</span>
+            <!--<span class="formerly-price">￥500000</span>-->
+          </p>
+
+          <p class="orders-logistics">
+            <span>数量：<strong>{{ goods_num }}</strong></span>
+          </p>
+        </div>
+      </div>
+    </dd>
+    {{/each}}
+    <dd>
+      <div class="orders-footnote">
+        <span>运费：<strong>{{ shipping_fee }}</strong></span>
+
+        <p class="orders-total">合计：<strong>￥{{ orders_amount }}</strong></p>
+
+        <p><strong>{{ order_state }}</strong></p>
+      </div>
+    </dd>
+    <dd>
+      <div class="cart-list-foot">
+        {{#if if_receive}}
+        <button id="orders_pay" class="am-btn am-btn-magenta">待付款</button>
+        {{/if}}
+        {{#if if_cancel}}
+        <button id="orders_cancel" class="am-btn am-btn-orange">取消订单</button>
+        {{/if}}
+      </div>
+    </dd>
+  </dl>
+  {{/content}}
+</script>
+<script id="payTemplate" type="text/x-handlebars-template">
+  {{#non_payMent}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="icon-shop"></i>
+          <span class="cart-list-title">{{ store_name }}</span>
+          <span class="edit-tool">{{ state_desc }}</span>
+        </div>
+      </div>
+    </dd>
+    {{#each orders_cont}}
+    <dd>
+      <div id="confirm-orders" class="cart-list-bd">
+        <div class="orders-img">
+          <img src="{{ goods_image_url }}" alt=""/>
+        </div>
+        <div id="orders_text">
+          <p class="orders-name">{{ goods_name }}</p>
+
+          <p class="orders-price">
+            <span class="current-price">￥{{ goods_price }}</span>
+            <!--<span class="formerly-price">￥500000</span>-->
+          </p>
+
+          <p class="orders-logistics">
+            <span>数量：<strong>{{ goods_num }}</strong></span>
+          </p>
+        </div>
+      </div>
+    </dd>
+    {{/each}}
+    <dd>
+      <div class="orders-footnote">
+        <span>运费：<strong>{{ shipping_fee }}</strong></span>
+
+        <p class="orders-total">合计：<strong>￥{{ orders_amount }}</strong></p>
+
+        <p><strong>{{ order_state }}</strong></p>
+      </div>
+    </dd>
+    <dd>
+      <div class="cart-list-foot">
+        {{#if if_receive}}
+        <button id="orders_pay" class="am-btn am-btn-magenta">待付款</button>
+        {{/if}}
+        {{#if if_cancel}}
+        <button id="orders_cancel" class="am-btn am-btn-orange">取消订单</button>
+        {{/if}}
+      </div>
+    </dd>
+  </dl>
+  {{/non_payMent}}
+    <!--<dl class="am-list">-->
+      <!--<dd>-->
+        <!--<div class="cart-list-bd">-->
+          <!--<img src="../../img/buy_flow_img/nan_orders.png" alt=""/>-->
+        <!--</div>-->
+      <!--</dd>-->
+    <!--</dl>-->
+</script>
+<script id="receiveTemplate" type="text/x-handlebars-template">
+  {{#receive}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="icon-shop"></i>
+          <span class="cart-list-title">{{ store_name }}</span>
+          <span class="edit-tool">{{ state_desc }}</span>
+        </div>
+      </div>
+    </dd>
+    {{#each orders_cont}}
+    <dd>
+      <div id="confirm-orders" class="cart-list-bd">
+        <div class="orders-img">
+          <img src="{{ goods_image_url }}" alt=""/>
+        </div>
+        <div id="orders_text">
+          <p class="orders-name">{{ goods_name }}</p>
+
+          <p class="orders-price">
+            <span class="current-price">￥{{ goods_price }}</span>
+            <!--<span class="formerly-price">￥500000</span>-->
+          </p>
+
+          <p class="orders-logistics">
+            <span>数量：<strong>{{ goods_num }}</strong></span>
+          </p>
+        </div>
+      </div>
+    </dd>
+    {{/each}}
+    <dd>
+      <div class="orders-footnote">
+        <span>运费：<strong>{{ shipping_fee }}</strong></span>
+
+        <p class="orders-total">合计：<strong>￥{{ orders_amount }}</strong></p>
+
+        <p><strong>{{ order_state }}</strong></p>
+      </div>
+    </dd>
+    <dd>
+      <div class="cart-list-foot">
+        {{#if if_receive}}
+        <button id="orders_pay" class="am-btn am-btn-magenta">待付款</button>
+        {{/if}}
+        {{#if if_cancel}}
+        <button id="orders_cancel" class="am-btn am-btn-orange">取消订单</button>
+        {{/if}}
+      </div>
+    </dd>
+  </dl>
+  {{/receive}}
+</script>
+<script id="commentTemplate" type="text/x-handlebars-template">
+  {{#non_payM}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="icon-shop"></i>
+          <span class="cart-list-title">{{ store_name }}</span>
+          <span class="edit-tool">{{ state_desc }}</span>
+        </div>
+      </div>
+    </dd>
+    {{#each orders_cont}}
+    <dd>
+      <div id="confirm-orders" class="cart-list-bd">
+        <div class="orders-img">
+          <img src="{{ goods_image_url }}" alt=""/>
+        </div>
+        <div id="orders_text">
+          <p class="orders-name">{{ goods_name }}</p>
+
+          <p class="orders-price">
+            <span class="current-price">￥{{ goods_price }}</span>
+            <!--<span class="formerly-price">￥500000</span>-->
+          </p>
+
+          <p class="orders-logistics">
+            <span>数量：<strong>{{ goods_num }}</strong></span>
+          </p>
+        </div>
+      </div>
+    </dd>
+    {{/each}}
+    <dd>
+      <div class="orders-footnote">
+        <span>运费：<strong>{{ shipping_fee }}</strong></span>
+
+        <p class="orders-total">合计：<strong>￥{{ orders_amount }}</strong></p>
+
+        <p><strong>{{ order_state }}</strong></p>
+      </div>
+    </dd>
+    <dd>
+      <div class="cart-list-foot">
+        {{#if if_receive}}
+        <button id="orders_pay" class="am-btn am-btn-magenta">待付款</button>
+        {{/if}}
+        {{#if if_cancel}}
+        <button id="orders_cancel" class="am-btn am-btn-orange">取消订单</button>
+        {{/if}}
+      </div>
+    </dd>
+  </dl>
+  {{/non_payM}}
+</script>
+<script src="../../js/control/my_mallController.js"></script>
+
+</body>
+</html>

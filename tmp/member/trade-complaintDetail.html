@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+      <span class="am-header-nav-title">交易投诉详情</span>
+    </a>
+  </div>
+</header>
+<div class="am-container">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-bd refund-hd">
+      <div class="refund-hd-cont">
+        <dl class="refund-hd-title">
+          <dt>
+            <span>投诉状态:</span>
+            <span id="c-state"></span>
+          </dt>
+          <dd>
+            <span>投诉主题：</span>
+            <span id="c-theme"></span>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div id="trade-detail" class="trade-info-c">
+  </div>
+</div>
+<script src="../../api_desertion/config.js"></script>
+<script src="../../api_desertion/common.js"></script>
+<script src="../../src/js/zepto.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="complaint-detail" type="text/x-handlebars-template">
+  {{#content}}
+  <h3>交易投诉详情</h3>
+  <ul class="am-list am-list-static">
+    <li id="applyTime"><i class="am-icon-long-arrow-down am-fl"></i>提交投诉</li>
+    <li id="disposeTime"><i class="am-icon-long-arrow-down am-fl"></i>待仲裁</li>
+    <li id="finishTime"><i class="am-icon-circle-o am-fl"></i>完成</li>
+  </ul>
+  <h3>投诉信息</h3>
+  <ul class="am-list am-list-static">
+    <li class="am-g">
+      <span class="am-col col-sm-3">投诉证据：</span>
+      <span class="am-col col-sm-3"><img src="{{c-evi1}}" alt=""/></span>
+      <span class="am-col col-sm-3"><img src="{{c-evi2}}" alt=""/></span>
+      <span class="am-col col-sm-3"><img src="{{c-evi3}}" alt=""/></span>
+    </li>
+    <li>
+      <span>被投诉店铺：</span>
+      <span>{{c-store}}</span>
+    </li>
+    <li>
+      <span>投诉内容：</span>
+      <span>{{c-cont}}</span>
+    </li>
+    <li>
+      <span>投诉时间：</span>
+      <span>{{c-time}}</span>
+    </li>
+  </ul>
+  <h3>申诉信息</h3>
+  <ul class="am-list am-list-static">
+    <li class="am-g">
+      <span class="am-col col-sm-3">申述证据：</span>
+      <span class="am-col col-sm-3"><img src="{{appeal-evi}}" alt=""/></span>
+    </li>
+    <li>
+      <span>申诉时间：</span>
+      <span>{{appeal-time}}</span>
+    </li>
+    <li>
+      <span>申诉内容：</span>
+      <span>{{appeal-cont}}</span>
+    </li>
+  </ul>
+  <h3>处理结果</h3>
+  <ul class="am-list am-list-static">
+    <li>
+      <span>处理结果：</span>
+      <span>{{c-result}}</span>
+    </li>
+    <li>
+      <span>处理时间：</span>
+      <span>{{dispose-time}}</span>
+    </li>
+  </ul>
+  {{/content}}
+</script>
+<script>
+  /** @namespace result.datas.complain_info */
+  /** @namespace v.complain_subject_content */
+  /** @namespace v.complain_pic3 */
+  /** @namespace v.complain_pic2 */
+  /** @namespace v.complain_pic1 */
+  /** @namespace v.appeal_datetime */
+  /** @namespace v.appeal_message */
+  /** @namespace v.appeal_pic1 */
+  /** @namespace v.final_handle_datetime */
+  /** @namespace v.complain_content */
+  /** @namespace v.final_handle_message */
+
+  $(function () {
+    var key = getcookie('key');
+    if (key == '') {
+      var urlarray = geturlstring();
+      if (urlarray['key']) {
+        key = urlarray['key'];
+      } else {
+        location.href = 'login.html';
+      }
+    }
+
+    function initPage() {
+      var complain_id = GetQueryString("complain_id");
+      $.ajax({
+        type: 'post',
+        url: ApiUrl + "/index.php?act=member_complain&op=complain_info",
+        data: {key: key, complain_id: complain_id},
+        dataType: "json",
+        success: function (result) {
+          var v = result.datas.complain_info;
+          var complaintDetail = {
+            'c-store': v.accused_name,
+            'c-theme': v.complain_subject_content,
+            'c-time': (new Date(+v.complain_datetime * 1000)).toLocaleDateString().split('/').join('-'),
+            'c-cont': v.complain_content,
+            'c-evi3': '/data/upload/shop/complain/' + v.complain_pic3,
+            'c-evi2': '/data/upload/shop/complain/' + v.complain_pic2,
+            'c-evi1': '/data/upload/shop/complain/' + v.complain_pic1,
+            'appeal-time': (new Date(+v.appeal_datetime * 1000)).toLocaleDateString().split('/').join('-'),
+            'appeal-cont': v.appeal_message,
+            'appeal-evi': v.appeal_pic1,
+            'c-result': v.final_handle_message,
+            'dispose-time': (new Date(+v.final_handle_datetime * 1000)).toLocaleDateString().split('/').join('-')
+          };
+          var contentPage = {content: complaintDetail};
+          var template = Handlebars.compile($('#complaint-detail').html());
+          $('#trade-detail').html(template(contentPage));
+          $('#c-theme').append(v.complain_subject_content);
+          $('#c-state').append((function () {
+                switch (v.complain_state) {
+                  case "10" :
+                    return "新投诉";
+                    break;
+                  case "20" :
+                    return "投诉通过转给被投诉的人";
+                    break;
+                  case "30" :
+                    return "被投诉人已申诉";
+                    break;
+                  case "40" :
+                    return "提交仲裁";
+                    break;
+                  case "99" :
+                    return "已关闭";
+                    break;
+                }
+              })()
+          );
+
+          if (v.complain_datetime > 0) {
+            $('#applyTime').addClass('am-active')
+          }
+          if (v.appeal_datetime > 0) {
+            $('#disposeTime').addClass('am-active')
+          }
+          if (v.final_handle_datetime > 0) {
+            $('#finishTime').addClass('am-active')
+          }
+        }
+      })
+    }
+
+    initPage();
+  });
+</script>
+</body>
+</html>

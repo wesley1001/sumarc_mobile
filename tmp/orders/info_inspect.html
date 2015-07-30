@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <!--<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">-->
+  <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+</head>
+
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+      <span class="am-header-nav-title">订单详情</span>
+    </a>
+  </div>
+</header>
+<div class="orders-particular">
+  <div class="paid-info">
+    <div class="paid-title">
+      <p>已付款</p>
+    </div>
+    <div class="paid-list">
+      <ul>
+        <li class="amount">
+          <span class="price">订单金额(含运费)： <strong>￥5000000</strong></span>
+        </li>
+        <li class="address-cont">
+          <span>收货地址：</span>
+          <p>珠海市香洲区 前山路 78号 世邦国际装饰广场 四层</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="default-address">
+    <div  class="info-title"><p>收货人信息</p></div>
+    <div class="address-list">
+      <ul>
+        <li class="contact">
+          <span class="name">收货人：<strong>林宥嘉</strong></span>
+          <span class="tel-phone">1836289900</span>
+        </li>
+        <li class="address-cont">
+          <span>收货地址：</span>
+          <p>珠海市香洲区 前山路 78号 世邦国际装饰广场 四层</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="orders-content">
+    <ul class="am-list">
+      <li>
+        <div class="cart-list-hd">
+          <div>
+            <i class="icon-shop"></i>
+            <span class="cart-list-title">世邦家居世界</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div id="confirm-orders" class="cart-list-bd">
+          <div class="orders-des">
+            <img class="orders-img" src="../../img/daimeng.png" alt=""/>
+            <p class="orders-name">英式风格 精致描银 布艺双人沙发布艺双人沙发布艺双人沙发</p>
+            <p class="orders-price">
+              <span class="current-price">￥30000</span>
+              <span class="formerly-price">￥500000</span>
+            </p>
+            <span class="orders-num">数量：<strong>5</strong></span>
+          </div>
+          <div class="orders-logistics">
+            <span>运费：<strong>免邮</strong></span>
+            <span class="price">合计： <strong>￥5000000</strong></span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="button-list">
+  <button type="button" class="am-btn am-btn-white am-radius am-fr"><i class="icon-qq"></i>联系店主</button>
+  <button type="button" class="am-btn am-btn-white am-radius am-fl"><i class="icon-ww"></i>联系店主</button>
+</div>
+<div class="transaction-list">
+  <p><span>订单号：</span>5555555615615616</p>
+  <p><span>成交时间：<span>2015-01-17</span></span></p>
+</div>
+<div class="button-list reminder">
+  <button class="am-btn am-btn-magenta">待付款</button>
+  <button class="am-btn am-btn-orange">取消订单</button>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+</body>
+</html>

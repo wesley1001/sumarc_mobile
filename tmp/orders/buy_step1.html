@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>填写核对购物信息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css_desertion/main.css">
+	<link rel="stylesheet" type="text/css" href="../../css_desertion/child.css">
+	<link rel="stylesheet" type="text/css" href="../../css/pikaday.css">
+	<link rel="stylesheet" type="text/css" href="../../css/libs/amazeui.css">
+	<link rel="stylesheet" type="text/css" href="../../css/app.css">
+
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+	<div class="am-header-left am-header-nav">
+		<a href="javascript:history.back();" class="">
+			<span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+			<span class="am-header-nav-title">订单确认</span>
+		</a>
+	</div>
+</header>
+<div class="buy_step1">
+	<div class="buys1-cnt buys1-address-cnt">
+		<!--<p class="cfix"></p>-->
+			<!--<span class="btn-s btn-prink-s fright buys1-edit-address buys1-edit-btn">修改</span>-->
+		<ul id="goto-address" class="buys-ycnt buys1-hide-detail">
+			<li class="cfix title">收货人信息</li>
+			<li class="cfix">
+				<span class="key fleft">收货人：</span>
+				<div class="value fleft" id="true_name">叶月芷</div>
+				<div class="value fright" id="mob_phone">1836289900</div>
+			</li>
+			<li class="cfix">
+				<span class="key fleft">收货地址：</span>
+				<div class="value fleft" id="address">珠海市 香洲区 前山路78号 世邦国际装饰广场 四层</div>
+			</li>
+			<!--<li class="cfix">-->
+				<!--<span class="key fleft">联系电话：</span>-->
+			<!--</li>-->
+		</ul>
+		<ul class="buys1-hide-list buys-ycnt hide">
+			<li id="addresslist">
+				<label class="new-address clr-d94">
+					<input type="radio" name="address" value="0" class="address-radio"/>
+					使用新的地址信息
+				</label>
+
+				<div class="invoice-addcnt">
+					<div class="iadd-title">
+						收货人信息：
+					</div>
+					<div>
+						<p class="iadd-ip">姓名：<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<input type="text" class="n-input h22 wp100" name="true_name" id="vtrue_name"/>
+						</p>
+
+						<p class="iadd-ip"> 手机号码:<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<input type="text" class="n-input h22 wp100" name="mob_phone" id="vmob_phone"/>
+						</p>
+
+						<p class="iadd-ip"> 电话号码:</p>
+
+						<p class="iadd-ip">
+							<input type="text" class="n-input h22 wp100" name="tel_phone" id="vtel_phone"/>
+						</p>
+					</div>
+					<div class="iadd-title"> 地址信息：</div>
+					<div>
+						<p class="iadd-ip">省份：<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<select class="select-30" name="prov" id="vprov">
+								<option value="">请选择...</option>
+							</select>
+						</p>
+						<p class="iadd-ip">城市：<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<select class="select-30" name="city" id="vcity">
+								<option value="">请选择...</option>
+							</select>
+						</p>
+						<p class="iadd-ip"> 区县：<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<select class="select-30" name="region" id="vregion">
+								<option value="">请选择...</option>
+							</select>
+						<p class="iadd-ip"> 小区：<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<select class="select-30" name="town" id="vtown">
+								<option value="">请选择...</option>
+							</select>
+						</p>
+						<p class="iadd-ip"> 街道：<span class="opera-tips">(*必填)</span></p>
+
+						<p class="iadd-ip">
+							<input type="text" class="n-input h22 wp100" name="vaddress" id="vaddress">
+						</p>
+					</div>
+				</div>
+				<div class="error-tips"></div>
+			</li>
+			<li class="invoice_opeara">
+				<a href="javascript:void(0);" class="btn-prink save-address">保存地址信息</a>
+			</li>
+		</ul>
+	</div>
+	<div class="buys1-cnt">
+		<ul class="buys-ycnt">
+			<li class="cfix buys-yc-type">
+				<p class="fleft">支付方式</p>
+				<label id="online">
+				<input type="radio" name="buy-type" checked value="online">在线支付
+				</label>
+				<!--<label class="mt5" id="offline">-->
+					<!--<input type="radio" name="buy-type" class="mr5" value="offline"/>货到付款-->
+				<!--</label>-->
+			</li>
+		</ul>
+	</div>
+	<!--<div class="buys1-cnt">-->
+		<!--<h3 class="cfix">送货时间</h3>-->
+		<!--<div class="buys-ycnt">-->
+			<!--<label for="datepicker">Date:</label>-->
+			<!--<input name="deliver_time[]" class="deliver_time" store_id="5" type="text" id="datepicker" value="">-->
+			<!--<p>请选择 <span id="selected"></span>后的日期</p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="buys1-cnt buys1-invoice-cnt">-->
+	<!--<h3 class="cfix">发票信息 <span class="btn-s btn-prink-s buys1-edit-invoice buys1-edit-btn fright">修改</span></h3>-->
+	<!--<ul class="buys-ycnt buys1-hide-detail">-->
+	<!--<li class="cfix">-->
+	<!--<div class="value fleft" id="inv_content"></div>-->
+	<!--</li>-->
+	<!--</ul>-->
+	<!--<ul class="buys1-hide-list buys-ycnt hide">-->
+	<!--<li id="invoice_add">-->
+	<!--<label class="new-invoice clr-d94">-->
+	<!--<input type="radio" name="invoice" value="0" class="inv-radio"/>-->
+	<!--使用新的发票信息-->
+	<!--</label>-->
+	<!--<div class="invoice-addcnt">-->
+	<!--<div class="iadd-title">发票抬头：</div>-->
+	<!--<div class="iadd-item">-->
+	<!--<label>-->
+	<!--<input type="radio" checked="checked" name="inv_title_select" class="mr5" value="person" >个人-->
+	<!--</label>-->
+	<!--<label class="mt5">-->
+	<!--<input type="radio" name="inv_title_select" class="mr5 inv-tlt-sle" value="company">-->
+	<!--<span class="mr5">企业</span>-->
+	<!--<input type="text" class="input-30 head-invoice" name="inv_title">-->
+	<!--</label>-->
+	<!--</div>-->
+	<!--<div class="iadd-title">-->
+	<!--发票内容：-->
+	<!--</div>-->
+	<!--<p class="iadd-cnt">-->
+	<!--<select class="select-30" id="inc_content" name='inv_content'>-->
+	<!--</select>-->
+	<!--</p>-->
+	<!--</div>-->
+	<!--</li>-->
+	<!--<li class="invoice_opeara">-->
+	<!--<a href="javascript:void(0);" class="btn-prink save-invoice">保存发票信息</a>-->
+	<!--<a href="javascript:void(0);" class="btn-white no-invoice">不需要发票</a>                    -->
+	<!--</li>-->
+	<!--</ul>-->
+	<!--</div>-->
+	<div class="buys1-cnt">
+			<!--  <span class="btn-s btn-prink-s fright" onclick="javascript:history.go(-1);">去购物车</span> -->
+		<ul class="buys-ytable mt10" id="goodslist_before">
+			<li>
+				<ul id="deposit">
+				</ul>
+				<!--div class="pre-deposit-wp hide">
+					<p class="cfix">
+						<label>
+							<input type="checkbox" class="mr5" id="usepdpy" checked/>使用预存款支付
+						</label>
+					</p>
+
+					<p>
+						(可用金额为<span class="pre-doposit-money clr-d94">￥<span id="available_predeposit"></span></span>)
+					</p>
+
+					<div id="pd">
+						<p class="cfix">
+							登录密码：<input type="password" class="mr5 h22" name="loginpassword" id="loginpassword"/>
+						</p>
+
+						<p class="password_error_tip" style="display:none;color:red;"></p>
+
+						<p>
+							<span class="btn-s btn-yello-s" id="pguse">使用</span>
+						</p>
+					</div>
+				</div-->
+			</li>
+			<!--<li>-->
+				<!--<a href="javascript:void(0);" class="post-order">提交订单</a>-->
+			<!--</li>-->
+		</ul>
+		<div class="bd-t-cc bottom-tool">
+			<div class="buys-order-total">
+				总计：￥<span id="total_price"></span>
+			</div>
+			<button id="buy_step2" class="am-btn am-btn-orange am-btn-sm">确认</button>
+		</div>
+	</div>
+</div>
+<!--<div id="footer"></div>-->
+<input type="hidden" name="address_id">
+<input type="hidden" name="area_id">
+<input type="hidden" name="city_id">
+<input type="hidden" name="town">
+<input type="hidden" name="freight_hash">
+<input type="hidden" name="vat_hash">
+<input type="hidden" name="allow_offpay">
+<input type="hidden" name="offpay_hash">
+<input type="hidden" name="invoice_id">
+<input type="hidden" name="passwd_verify" value="0">
+<input type="hidden" name="total_price">
+<input type="hidden" name="available_predeposit">
+
+<script type="text/javascript" src="../../api_desertion/config.js"></script>
+<script type="text/javascript" src="../../api_desertion/common.js"></script>
+<script type="text/javascript" src="../../js/zepto.min.js"></script>
+<script>
+	$('#goto-address').on('click',function(){
+		window.location.href = '../address_control/select_address.html'
+	})
+</script>
+<!--<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>-->
+<!--<script type="text/javascript" src="../../assets/js/amazeui.min.js"></script>-->
+<script type="text/javascript" src="../../api_desertion/moment.js"></script>
+<script type="text/javascript" src="../../js/pikaday.js"></script>
+<script type="text/javascript" src="../../api_desertion/template.js"></script>
+<script type="text/javascript" src="../../api_desertion/simple-plugin.js"></script>
+<script type="text/javascript" src="../../js/api/common-top.js"></script>
+<script type="text/javascript" src="../../js/api/footer.js"></script>
+<script type="text/javascript" src="../../js/api/buy_step1.js"></script>
+</body>
+</html>

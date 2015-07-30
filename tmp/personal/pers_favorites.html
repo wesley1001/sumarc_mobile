@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="../../src/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/customize_am.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <style>
+    button {
+      border: 0;
+      color: #ff9500;
+      font-size: 1.6rem;
+      background: none;
+      }
+
+    input[type=checkbox] {
+      padding-left:5px;
+      padding-right:5px;
+      border-radius:50%;
+
+      -webkit-appearance:button;
+
+      border: none;
+
+      background: url("../../img/icon_img/right_h.jpg") #dddddd;
+      color:#FFF;
+      white-space: nowrap;
+      overflow:hidden;
+
+      width:18px;
+      height:18px;
+      }
+
+    input[type=checkbox]:checked {
+      border: none;
+      background: url("../../img/icon_img/right.jpg") #ff9500;
+      }
+
+    input[type=checkbox]:hover {
+      box-shadow:0px 0px 2px #ff9500;
+      }
+
+    .item-favor .am-checkbox {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      }
+    #favor_list {
+      display: block;
+      position: relative;
+      }
+    .am-container.favorite-list {
+      padding-right: 6px;
+      }
+  </style>
+</head>
+
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="pers_mall.html">
+      <i class="am-icon-angle-left am-header-icon"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">收藏的店铺</h1>
+  <div class="am-header-right am-header-nav">
+    <a href="javascript:void(0);" id="edit_btn">
+      <i class="am-header-icon am-icon-trash"></i>
+    </a>
+  </div>
+</header>
+<div class="search-f">
+  <div class="am-input-group am-input-group-sm">
+    <input type="text" class="am-form-field">
+        <span class="am-input-group-btn">
+          <button class="am-btn am-btn-default" type="button">
+            <i class="icon-fs"></i>
+          </button>
+        </span>
+  </div>
+</div>
+<div id="favor_tables" class="am-container favorite-list"></div>
+<div class="remove bottom-tool">
+  <input class="all" type="checkbox">
+  <button class="am-btn am-btn-orange" id="del_collect">删除</button>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="favorTemplate" type="text/x-handlebars-template">
+  <ul id="favor_list">
+  {{#content}}
+  <li data-favor="{{ f_id }}" class="item-favor">
+    <label class="am-checkbox checkbox-cells" style="display:none">
+      <input type="checkbox" class="check">
+    </label>
+    <img src="{{ f_img }}" alt=""/>
+    <div class="name"><p>{{ f_name }}</p></div>
+    <div class="price"><span>￥{{ f_price }}</span></div>
+  </li>
+  {{/content}}
+  </ul>
+</script>
+<script src="../../js/control/pers_favorController.js"></script>
+<script src="../../js/views/pers_favorViews.js"></script>
+</body>
+</html>

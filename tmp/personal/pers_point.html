@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--Tile icon for Win8 (144x144 + tile color)-->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css">
+  <style>
+    body {
+      background-color: #FFFFFF;
+      }
+
+    html,
+    body,
+    .page {
+      height: 100%;
+      }
+
+    #wrapper {
+      position: absolute;
+      top: 38px;
+      bottom: 0;
+      overflow: hidden;
+      margin: 0;
+      width: 100%;
+      padding: 0;
+      background-color: #f8f8f8;
+      }
+
+    .pull-action {
+      text-align: center;
+      height: 45px;
+      line-height: 45px;
+      color: #999;
+      }
+
+    .pull-action .am-icon-spin {
+      display: none;
+      }
+
+    .pull-action.loading .am-icon-spin {
+      display: block;
+      }
+
+    .pull-action.loading .pull-label {
+      display: none;
+      }
+
+    .am-list {
+      margin: 0;
+      }
+
+    .point-th {
+      width: 100%;
+      height: 32px;
+      border-bottom: 1px solid #ff9500;
+      }
+
+    .point-th li {
+      width: 33.3%;
+      height: 30px;
+      float: left;
+      border: none;
+      text-align: center;
+      position: relative;
+      }
+
+    .item-point {
+      width: 100%;
+      height: 36px;
+      position: relative;
+      }
+
+    .item-point span {
+      width: 33.3%;
+      height: 26px;
+      float: left;
+      font-size: 1.4rem;
+      line-height: 26px;
+      text-align: center;
+      }
+  </style>
+</head>
+<body id="points">
+<div class="page">
+  <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+    <div class="am-header-left am-header-nav">
+      <a href="javascript:history.back();" class="">
+        <i class="am-header-icon am-icon-angle-left"></i>
+      </a>
+    </div>
+    <h1 class="am-header-title">
+      <i class="am-icon-star-half-o"></i>我的积分
+    </h1>
+  </header>
+  <div id="wrapper" data-am-widget="list_news" class="points-list am-list-news am-list-news-default">
+    <div class="am-list-news-bd">
+      <div class="pull-action loading" id="pull-down">
+        <span class="am-icon-arrow-down pull-label" id="pull-down-label"> 下拉刷新</span>
+        <span class="am-icon-spinner am-icon-spin"></span>
+      </div>
+      <ul class="am-list point-th">
+        <li>获取时间</li>
+        <li>积分变更</li>
+        <li>描述</li>
+      </ul>
+      <ul class="am-list" id="m_points">
+        <li class="am-list-item-desced">
+          <div class="am-list-item-text">
+            正在加载内容...
+          </div>
+        </li>
+      </ul>
+      <div class="pull-action" id="pull-up">
+        <span class="am-icon-arrow-down pull-label" id="pull-up-label"> 上拉加载更多</span>
+        <span class="am-icon-spinner am-icon-spin"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../../js/libs/jquery.min.js"></script>
+<script type="text/javascript" src="../../src/js/amazeui.js"></script>
+<script type="text/javascript" src="../../js/libs/handlebars.min.js"></script>
+<script type="text/javascript" src="../../js/services/globalService.js"></script>
+<script id="pointsTemplate" type="text/x-handlebars-template">
+  {{#each points}}
+  <li class="item-point">
+    <span class="">{{points_addtime}}</span>
+    <span class="c-org">{{points_number}}</span>
+    <span class="">{{points_desc}}</span>
+  </li>
+  {{/each}}
+</script>
+<script type="text/javascript">
+  $(function () {
+    var key = getKey('key');
+    /** @namespace data.datas.points_list */
+    /** @namespace v.pl_addtime */
+    /** @namespace v.pl_points */
+    /** @namespace v.pl_desc */
+    /** @namespace data.member_points */
+
+//    var page = pagesize;
+//    var curpage = 1;
+//    var hasmore = true;
+    var EventsList = function (element, options) {
+      var $main = $('#wrapper');
+      var $list = $main.find('#m_points');
+      var $pullDown = $main.find('#pull-down');
+      var $pullDownLabel = $main.find('#pull-down-label');
+      var $pullUp = $main.find('#pull-up');
+      var topOffset = -$pullDown.outerHeight();
+      this.compiler = Handlebars.compile($('#pointsTemplate').html());
+      this.next = this.prev = this.curpage = Number(options.params.curpage);
+      this.start = options.params.page;
+      this.total = null;
+      this.getURL = function (params) {
+        var queries = [];
+        for (var key in  params) {
+          if (key !== 'curpage') {
+            queries.push(key + '=' + params[key]);
+          }
+        }
+        queries.push('curpage=');
+        return options.api + '&' + queries.join('&');
+      };
+      this.renderList = function (pagination, type) {
+        var _this = this;
+        var $el = $pullDown;
+        console.log(type);
+        if (type === 'load') {
+          $el = $pullUp;
+        }
+        $.getJSON(this.URL + pagination, {key: key}).then(function (data) {
+              console.log(data);
+              _this.total = parseFloat(data.page_total);
+              var v = data.datas;
+              var points = v.points_list.map(function (v) {
+                return {
+                  'points_addtime': (new Date(+v.pl_addtime * 1000)).toLocaleDateString().split('/').join('-'),
+                  'points_number': v.pl_points,
+                  'points_desc': v.pl_desc
+                };
+              });
+              var points_list = {points: points};
+              var html = _this.compiler(points_list);
+              if (type === 'refresh') {
+                $list.children('tr').first().before(html);
+              } else if (type === 'load') {
+                $list.append(html);
+              } else {
+                $list.html(html);
+                $('#points-sum').append(data.member_points);
+              }
+              // refresh iScroll
+              setTimeout(function () {
+                _this.iScroll.refresh();
+              }, 100);
+            },
+            function () {
+              console.log('Error...')
+            }).always(function () {
+              _this.resetLoading($el);
+              if (type !== 'load') {
+                _this.iScroll.scrollTo(0, topOffset, 800, $.AMUI.iScroll.utils.circular);
+              }
+            });
+      };
+      this.setLoading = function ($el) {
+        $el.addClass('loading');
+      };
+      this.resetLoading = function ($el) {
+        $el.removeClass('loading');
+      };
+      this.init = function () {
+        var myScroll = this.iScroll = new $.AMUI.iScroll('#wrapper', {});
+        // myScroll.scrollTo(0, topOffset);
+        var _this = this;
+        var pullFormTop = false;
+        var pullStart;
+        this.URL = this.getURL(options.params);
+        this.renderList(options.params.curpage);
+//        this.renderList(options.params.start);
+        myScroll.on('scrollStart', function () {
+          if (this.y >= topOffset) {
+            pullFormTop = true;
+          }
+          pullStart = this.y;
+          // console.log(this);
+        });
+        myScroll.on('scrollEnd', function () {
+          if (pullFormTop && this.directionY === -1) {
+            _this.handlePullDown();
+          }
+          pullFormTop = false;
+          // pull up to load more
+          if (pullStart === this.y && (this.directionY === 1)) {
+            _this.handlePullUp();
+          }
+        });
+      };
+      this.handlePullDown = function () {
+        console.log('handle pull down');
+        if (this.prev > 2) {
+          this.setLoading($pullDown);
+          this.prev--;
+          this.renderList(this.prev, 'refresh');
+        } else {
+          console.log('别刷了，没有了');
+        }
+      };
+      this.handlePullUp = function () {
+        console.log('handle pull up');
+        if (this.curpage < this.total) {
+          this.setLoading($pullUp);
+          this.next += 1;
+          this.curpage++;
+          this.renderList(this.next, 'load');
+        } else {
+          console.log(this.next);
+          // this.iScroll.scrollTo(0, topOffset);
+        }
+      }
+    };
+    $(function () {
+      var mPoint = new EventsList(null, {
+        api: ApiUrl + '/index.php?act=member_points',
+        params: {
+          page: 15,
+          curpage: '1'
+        }
+      });
+      mPoint.init();
+    });
+  })
+</script>
+</body>
+</html>

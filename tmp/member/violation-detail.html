@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <span class="am-icon-angle-left am-icon-md" id="btn-back"></span>
+      <span class="am-header-nav-title">违规举报</span>
+    </a>
+  </div>
+</header>
+<div class="am-container">
+  <div class="am-panel am-panel-default">
+    <!--<div class="am-panel-bd refund-hd">-->
+      <!--<div class="refund-hd-cont">-->
+        <!--<dl class="refund-hd-title">-->
+          <!--<dt>-->
+            <!--<i class="am-icon-file-text-o"></i><span id="complain-state"></span>-->
+          <!--</dt>-->
+          <!--<dd>-->
+            <!--<span class="refund-price">退款金额：</span>-->
+            <!--<span id="refund-price"><i class="am-icon-cny"></i></span>-->
+          <!--</dd>-->
+        <!--</dl>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+  <div id="violation-detail" class="trade-info-c">
+  </div>
+</div>
+<script src="../../api_desertion/config.js"></script>
+<script src="../../api_desertion/common.js"></script>
+<script src="../../src/js/zepto.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="complaint-detail" type="text/x-handlebars-template">
+  {{#content}}
+  <h3>违规举报详情</h3>
+  <ul class="am-list am-list-static">
+    <li class="am-active" ><i class="am-icon-long-arrow-down am-fl"></i>填写举报内容</li>
+    <li id="disposeTime"><i class="am-icon-long-arrow-down am-fl"></i>平台审核处理</li>
+    <li id="finishTime"><i class="am-icon-circle-o am-fl"></i>举报完成</li>
+  </ul>
+  <ul>
+    <li class="am-list-message">
+      <div class="am-list-message-hd">
+        <span><i class="am-icon-smile-o am-fl"></i>相关商品</span>
+      </div>
+      <div class="am-g am-list-message-bd">
+        <div class="am-col col-sm-4">
+          <img class="am-img-message" src="{{goods-img}}" alt=""/>
+        </div>
+        <div class="am-col col-sm-8">
+          <ul class="message-content">
+            <li><a href="javascript:void(0);"></a>{{goods-name}}</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <h3>举报信息</h3>
+  <ul class="am-list am-list-static">
+    <li>
+      <span>被举报商家：</span>
+      <span>{{v-store}}</span>
+    </li>
+    <li>
+      <span>举报类型：</span>
+      <span>{{v-type}}</span>
+    </li>
+    <li>
+      <span>举报内容：</span>
+      <span>{{v-cont}}</span>
+    </li>
+    <li>
+      <span>对话内容：</span>
+      <span>{{v-chat}}</span>
+    </li>
+    <li class="am-g">
+      <span class="am-col col-sm-3">举报证据：</span>
+      <span class="am-col col-sm-3"><img src="{{v-evi1}}" alt=""/></span>
+      <span class="am-col col-sm-3"><img src="{{v-evi2}}" alt=""/></span>
+      <span class="am-col col-sm-3"><img src="{{v-evi3}}" alt=""/></span>
+    </li>
+  </ul>
+  {{/content}}
+</script>
+<script>
+  /** @namespace result.datas.complain_info */
+  /** @namespace v.complain_subject_content */
+  /** @namespace v.complain_pic3 */
+  /** @namespace v.complain_pic2 */
+  /** @namespace v.complain_pic1 */
+  /** @namespace v.appeal_datetime */
+  /** @namespace v.appeal_message */
+  /** @namespace v.appeal_pic1 */
+  /** @namespace v.final_handle_datetime */
+  /** @namespace v.complain_content */
+  /** @namespace v.final_handle_message */
+
+  $(function () {
+    var key = getcookie('key');
+    if (key == '') {
+      var urlarray = geturlstring();
+      if (urlarray['key']) {
+        key = urlarray['key'];
+      } else {
+        location.href = 'login.html';
+      }
+    }
+
+    function initPage() {
+      var inform_id = GetQueryString("inform_id");
+      $.ajax({
+        type: 'get',
+        url: ApiUrl + "/index.php?act=member_inform&op=inform_info",
+        data: {key: key,inform_id: inform_id},
+        dataType: "json",
+        success: function (result) {
+          var v = result.datas.inform_info;
+          var violation_c = {
+              'goods-name': v.inform_goods_name,
+              'goods-img': '/data/upload/shop/common/' + v.inform_goods_image,
+              'v-store': v.inform_store_name,
+              'v-type': v.inform_subject_content,
+              'v-chat': v.inform_handle_message,
+              'v-cont': v.inform_content,
+              'v-evi1': v.inform_pic1,
+              'v-evi2': v.inform_pic2,
+              'v-evi3': v.inform_pic3
+            };
+          var contentPage = {content: violation_c};
+          var template = Handlebars.compile($('#complaint-detail').html());
+          $('#violation-detail').html(template(contentPage));
+          if (v.inform_datetime > 0) {
+            $('#disposeTime').addClass('am-active')
+          }
+          if (v.inform_datetime > 0) {
+            $('#finishTime').addClass('am-active')
+          }
+//          var v = result.datas.complain_info;
+//          var complaintDetail = {
+//            'c-store': v.accused_name,
+//            'c-theme': v.complain_subject_content,
+//            'c-time': (new Date(+v.complain_datetime * 1000)).toLocaleDateString().split('/').join('-'),
+//            'c-cont': v.complain_content,
+//            'c-evi3': '/data/upload/shop/complain/' + v.complain_pic3,
+//            'c-evi2': '/data/upload/shop/complain/' + v.complain_pic2,
+//            'c-evi1': '/data/upload/shop/complain/' + v.complain_pic1,
+//            'appeal-time': (new Date(+v.appeal_datetime * 1000)).toLocaleDateString().split('/').join('-'),
+//            'appeal-cont': v.appeal_message,
+//            'appeal-evi': v.appeal_pic1,
+//            'c-result': v.final_handle_message,
+//            'dispose-time': (new Date(+v.final_handle_datetime * 1000)).toLocaleDateString().split('/').join('-')
+//          };
+//
+//          var complaint_c = {
+//            'goods': goods_list,
+//            'main': complaintDetail
+//          };
+
+//          $('#refund-price').append(result.datas.refund.order_amount);
+//          $('#complain-state').append((function () {
+//                switch (v.complain_state) {
+//                  case "10" :
+//                    return "新投诉";
+//                    break;
+//                  case "20" :
+//                    return "投诉通过转给被投诉的人";
+//                    break;
+//                  case "30" :
+//                    return "被投诉人已申诉";
+//                    break;
+//                  case "40" :
+//                    return "提交仲裁";
+//                    break;
+//                  case "99" :
+//                    return "已关闭";
+//                    break;
+//                }
+//              })()
+//          );
+
+//          if (v.complain_datetime > 0) {
+//            $('#applyTime').addClass('am-active')
+//          }
+//          if (v.appeal_datetime > 0) {
+//            $('#disposeTime').addClass('am-active')
+//          }
+//          if (v.final_handle_datetime > 0) {
+//            $('#finishTime').addClass('am-active')
+//          }
+        }
+      })
+    }
+    initPage();
+  });
+</script>
+</body>
+</html>

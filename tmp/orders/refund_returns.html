@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../src/i/favicon.png">
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/app.css">
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <style>
+    #refunds-list { position: relative;}
+    #refunds-list #orders_text {width: 64%;margin-left: 110px;}
+    dl {display: block;position: relative;}
+
+  </style>
+
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();">
+      <span class="am-header-icon am-icon-angle-left"></span>
+    </a>
+  </div>
+  <h1 class="am-header-title">退款及退货</h1>
+</header>
+<div id="refunds-list"></div>
+<script src="../../js/services/globalService.js"></script>
+<script src="../../js/libs/jquery.min.js"></script>
+<script src="../../src/js/amazeui.js"></script>
+<script src="../../js/libs/handlebars.min.js"></script>
+<script id="refunds-template" type="text/x-handlebars-template">
+  {{#content}}
+  <dl class="am-list">
+    <dd>
+      <div class="cart-list-hd">
+        <div>
+          <i class="icon-shop"></i>
+          <span class="cart-list-title">{{ store_name }}</span>
+          <span class="edit-tool">{{ service_state }}</span>
+        </div>
+      </div>
+    </dd>
+    <dd>
+      <div id="confirm-orders" class="cart-list-bd">
+        <div class="orders-img">
+          <img src="{{ goods_img }}" alt=""/>
+        </div>
+        <div id="orders_text">
+          <p class="orders-name">{{ goods_name }}</p>
+
+          <p class="orders-price">
+            <span class="current-price">￥{{ goods_price }}</span>
+          </p>
+          <p class="orders-logistics">
+            <span>数量：<strong>{{ goods_num }}</strong></span>
+          </p>
+          <p>订单编号：{{ order_sn }}</p>
+        </div>
+      </div>
+    </dd>
+    <dd>
+      <div class="orders-footnote">
+        <span>理由：<strong>{{ buyer_message }}</strong></span>
+        <span>退款信息：<strong>{{ reason_info }}</strong></span>
+        <span>退款编号：<strong>{{ refund_sn }}</strong></span>
+      </div>
+      <div class="orders-footnote">
+        <span>提交日期：<strong>{{ add_time }}</strong></span>
+      </div>
+      <!--<div class="orders-footnote" style="height:32px;">-->
+        <!--<a href="{{refunds-desc}}" class="am-btn am-btn-orange am-btn-xs am-fr">查看详情</a>-->
+      <!--</div>-->
+    </dd>
+  </dl>
+  {{/content}}
+</script>
+<script src="../../js/control/refund_returnsController.js"></script>
+</body>
+</html>

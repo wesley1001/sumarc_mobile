@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验房订单管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css_desertion/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css_desertion/member.css">
+		<link rel="stylesheet" href="../../css/libs/amazeui.css">
+		<link rel="stylesheet" href="../../css/app.css">
+    <style type="text/css">
+#inspect-order-list .order-ltlt{
+    background-color: #ECF5FF;
+    color: #000;
+}
+#inspect-order-list .order-pdinfor{
+    margin-left: 0;
+    background-color: #FCFCFC;
+    padding: 5px 0;
+    line-height: 30px;
+}
+    </style>
+</head>
+<body>
+    <header id="header" data-am-widget="header" class="am-header am-header-default"></header>
+
+    <!--验房订单-->
+    <div class="order-list-wp" id="inspect-order-list">
+        <script type="text/html" id="inspect-order-list-tmpl">
+        <div class="order-list">
+            <%if (inspect_order_list.length >0){%>
+                <ul>
+                <%for(var i = 0;i<inspect_order_list.length;i++){
+                       // var orderlist = inspect_order_list[i].order_list;
+                    %>
+                        <li class="gray-order-skin ">
+                            <div class="order-ltlt">
+                                <p>
+                                    下单时间：<%=inspect_order_list[i].input_time_str%>
+                                </p>
+                            </div>
+                            
+                                <div class="order-lcnt">
+                                    <div class="order-lcnt-shop">
+                                        <p>店铺名称：<%=inspect_order_list[i].store_name%></p>
+                                        <p>订单编号：<%=inspect_order_list[i].order_no%></p>
+                                    </div>
+                                    <div class="order-shop-pd">
+                                        
+                                        <a class="order-ldetail clearfix "  href="/wap/tmpl/member/inspect_order_detail.html?order_id=<%=inspect_order_list[i].order_id %>" >
+                                            <div class="order-pdinfor">
+                                                <p>验房地址：<%=inspect_order_list[i].address%><%=inspect_order_list[i].door_num%></p>
+                                                <p>期望日期：<%=inspect_order_list[i].want_date_str%></p>
+                                                <p>实际日期：<%=inspect_order_list[i].true_date_str%></p>
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="order-shop-total">
+                                        <p class="clr-c07">验房费用：￥<%=inspect_order_list[i].price%> </p>
+                                        <p class="mt5">
+                                            
+                                            <span class="ot-cancel"><%=inspect_order_list[i].order_status_str%></span>
+                                            
+                                             <%if(inspect_order_list[i].order_status == '3'){%>
+                                            <a href="javascript:void(0)" order_id="<%=inspect_order_list[i].order_id%>" class="sure-order">确认验收</a>
+                                            <%}%>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            <!--去支付-->
+                            <%if(inspect_order_list[i].order_status == '0'){%>
+                                <a href="<%=ApiUrl %>/index.php?act=member_inspect_order&op=pay&key=<%=key %>&order_id=<%=inspect_order_list[i].order_id %>" class="l-btn-login" >订单支付</a>
+                            <%}%>
+                            
+                        </li>
+                        <%}%>
+                <div class="pagination mt10">
+                    <a href="javascript:void(0);" class="pre-page <%if(curpage <=1 ){%>disabled<%}%>">上一页</a>
+                    <a href="javascript:void(0);" has_more="<%if (hasmore){%>true<%}else{%>false<%}%>"  class="next-page <%if (!hasmore){%>disabled<%}%>">下一页</a>
+                </div>
+            <%}else {%>
+                <div class="no-record">
+                    暂无记录
+                </div>
+            <%}%>
+        </div>
+        </script>
+    </div>
+    <div id="footer"></div>
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../src/js/amazeui.js"></script>
+    <script type="text/javascript" src="../../api_desertion/template.js"></script>
+    <script type="text/javascript" src="../../api_desertion/config.js"></script>
+    <script type="text/javascript" src="../../api_desertion/common.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/inspect_order_list.js"></script>
+</body>
+</html>

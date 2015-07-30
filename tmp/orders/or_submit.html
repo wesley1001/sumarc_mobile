@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <!--<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">-->
+  <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/orders_flow.css"/>
+  <link rel="stylesheet" href="../../utils/iCheck/minimal/blue.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <style>
+    body {
+      height: 100%;
+      position: relative;}
+  </style>
+</head>
+
+<body>
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back();" class="">
+      <i class="am-header-icon am-icon-angle-left"></i>
+    </a>
+  </div>
+  <h1 class="am-header-title">订单确认</h1>
+</header>
+<div id="or_list_submit" class="confirm-orders"></div>
+<div class="orders-commit">
+  <div class="pay-for">
+    <span>支付方式：<span class="current-pay"><input type="radio" name="iCheck"> 在线支付</span></span>
+  </div>
+  <div class="orders-info">
+    <p>共 <span class="num_of_cases"></span> 件商品</p>
+    <p>合计：<span class="amount">￥</span></p>
+  </div>
+  <div class="settlement">
+    <span>总计：<strong id="set-price" class="amount">￥</strong></span>
+    <button class="am-btn am-btn-orange goto-settlement">结算</button>
+  </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="to_be_continued">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">Hello Sumarc</div>
+    <div class="am-modal-bd">
+      支付交易，待后续开发~
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/libs/jquery.min.js"></script>
+
+<script src="../../js/libs/handlebars.min.js"></script>
+<script src="../../utils/iCheck/icheck.min.js"></script>
+<script src="../../js/services/globalService.js"></script>
+<script id="ordersTemplate" type="text/x-handlebars-template">
+  {{#address_cont}}
+  <div class="default-address">
+    <div  class="info-title"><p>收货人信息</p></div>
+    <div id="address_link" class="address-list">
+      <span class="right-vane"><i class="am-icon-angle-right"></i></span>
+      <!--<a href="../address_control/ads_select.html"></a>-->
+      <dl>
+        <dd class="contact">
+          <span class="name">收货人：<strong>{{ true_name }}</strong></span>
+          <span class="tel-phone">{{ mob_phone }}</span>
+        </dd>
+        <dd  class="address-cont">
+          <span>收货地址：</span>
+          <p>{{ area_info }}--{{ address }}</p>
+        </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  {{/address_cont}}
+  <div class="orders-content">
+    {{#store_item}}
+    <dl class="am-list">
+      <dt class="cart-list-hd">
+        <i class="icon-shop"></i>
+        <span class="cart-list-title">{{ store_name }}</span>
+        <!--<button class="edit-tool am-btn-text" type="button" data-toggle="button" data-loading-text="完成" autocomplete="off">编辑</button>-->
+      </dt>
+      {{#goods_list}}
+      <dd>
+        <div class="cart-list-bd">
+          <div class="orders-img">
+            <img src="{{ goods_image_url }}" alt=""/>
+          </div>
+          <div id="orders_text">
+            <p class="orders-name">{{ goods_name }}</p>
+            <p class="orders-price">
+              <span class="current-price" >￥{{ goods_price }}</span>
+              <span class="formerly-price">￥{{ goods_price }}</span>
+            </p>
+            <p class="orders-logistics">
+              <!--<span>运费：<strong>免邮</strong></span>-->
+              <span>数量：<strong class="current-num">{{ goods_num }}</strong></span>
+            </p>
+            <!--<p class="orders-total" data-total="{{ c_sum }}">合计：￥ <strong class="current-total">{{ c_sum }}</strong></p>-->
+          </div>
+        </div>
+      </dd>
+      {{/goods_list}}
+      <dd class="deliver-time">
+        <p class="text">送货时间：</p>
+        <p class="choose-time" data-deliver-time="{{ deliver_time }}"><input type="text" class="am-form-field future-time" placeholder="" id=""/></p>
+        <p class="reminder-text">请选择 {{ deliver_time }} 后的日期</p>
+      </dd>
+    </dl>
+    {{/store_item}}
+  </div>
+</script>
+<script src="../../js/libs/amazeui.min.js"></script>
+<script src="../../js/control/shopBuyController.js"></script>
+<script src="../../js/views/cart_buyViews.js"></script>
+</body>
+</html>

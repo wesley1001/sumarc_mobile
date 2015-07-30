@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Hello Sumarc</title>
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="../../src/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../../css/libs/amazeui.css">
+  <link rel="stylesheet" href="../../css/commo_view.css"/>
+  <link rel="stylesheet" href="../../css/app.css"/>
+  <style>
+    .am-figure-default {
+      margin: 0;
+      }
+
+    .promotion .am-figure-default img {
+      padding: 0;
+      margin: 0 auto;
+      border: none;
+      }
+
+    .pro-container {
+      z-index: 10;
+      bottom: 100px;
+      left: 33%;
+      margin: 0 auto;
+      position: absolute;
+      }
+
+    .promotion-btn {
+      display: block;
+      width: 125px;
+      height: 36px;
+      color: #FFFFFF;
+      line-height: 32px;
+      text-align: center;
+      border-radius: 12px;
+      border: 2px solid #df7107;
+      background-color: #df7107;
+      }
+
+    .promotion-btn:hover,
+    .promotion-btn:active {
+      color: #d5412b;
+      border: 2px solid #df7107;
+      background-color: transparent;
+      transition: all 3s ease;
+      -webkit-transition: all 3s ease;
+      }
+  </style>
+</head>
+<body>
+<div class="promotion">
+  <figure data-am-widget="figure" class="am am-figure am-figure-default "
+          data-am-figure="{  pureview: 'true' }">
+    <img src="../../img/buy_flow_img/Guide_promotion.png" alt="买买买"/>
+    <!--<figcaption class="am-figure-capition-btm">春天的花开秋天的风以及冬天的落阳</figcaption>-->
+    <div class="pro-container">
+      <a class="promotion-btn" href="../product_list.html">立即抢购</a>
+    </div>
+  </figure>
+</div>
+<script src="../../js/libs/jquery.min.js"></script>
+<script>
+//  location.replace(document.referrer);
+</script>
+<!-- ease<script src="../../src/js/amazeui.min.js"></script>-->
+</body>
+</html>
